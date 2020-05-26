@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Add } from '@material-ui/icons';
 import Grid from '@material-ui/core/Grid';
 import { STATUSES } from './../constants/index';
+import TaskList from '../components/TaskList';
 
 const listTask = [
   {
@@ -17,13 +18,13 @@ const listTask = [
     id: 2,
     title: "Play Football",
     description: "With my friend",
-    status: 2
+    status: 1
   },
   {
     id: 3,
     title: "Play game",
     description: "",
-    status: 3
+    status: 2
   }
 ];
 
@@ -37,18 +38,7 @@ class TaskBoard extends Component {
           STATUSES.map((status, index) => {
             const taskFilter = listTask.filter(taskFil => taskFil.status === status.value)
             return (
-              <Grid item md={4} xs={12} key={index}>
-                <div className={classes.status}>{status.label}</div>
-                <div className={classes.wraperListTask}>
-                  {
-                    taskFilter.map((task) => {
-                      return (
-                        <h1>{task.title}</h1>
-                      )
-                    })
-                  }
-                </div>
-              </Grid>
+              <TaskList key={index} tasks={taskFilter} status={status} index={index}/>
             )
           })
         }
