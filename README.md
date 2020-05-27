@@ -35,5 +35,21 @@ In the project directory, you can run:
 npm start
 ```
 
+## Install Eslint
+Use eslint to clean code https://eslint.org/docs/user-guide/getting-started
+
+```sh
+npm install eslint --save-dev
+```
+Then install extension ESlint on Visual studio Code, This will highlight the errors
+
+## Cấu hình ESlint 2 cách
+* Sử dụng file tên: `eslinttrc.*`  (* là json, js, yaml)
+* Thuộc tính eslintConfig trong file package.json
+>Quy tắc
+- 0: off
+- 1: warn: cảnh báo, code vẫn chạy
+- 2: error: lỗi, code dừng
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
