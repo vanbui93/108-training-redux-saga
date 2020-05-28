@@ -138,5 +138,11 @@ After create db.json file and create object
 json-server db.json
 ```
 
+## Install Redux-Saga
+> Xử lý lỗi middleware, trì hoàn dispatch
+```sh
+$ npm install --save redux-saga
+```
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
