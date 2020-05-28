@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core';
 import styles from './styles';
 import Button from '@material-ui/core/Button';
@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import { STATUSES } from './../constants/index';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
+import PropTypes from 'prop-types';
+
 
 const listTask = [
   {
@@ -34,45 +36,48 @@ class TaskBoard extends Component {
     super(props);
     this.state = {
       open: false
-    }
+    };
   }
 
   renderBoard = () => {
-    const { classes } = this.props;
     let xhtml = null;
     xhtml = (
       <Grid container spacing={3}>
         {
           STATUSES.map((status, index) => {
-            const taskFilter = listTask.filter(taskFil => taskFil.status === status.value)
+            const taskFilter = listTask.filter(taskFil => taskFil.status === status.value);
             return (
-              <TaskList key={index} tasks={taskFilter} status={status} index={index} />
-            )
+              <TaskList key={index} 
+                tasks={taskFilter} 
+                status={status} 
+                index={index} />
+            );
           })
         }
       </Grid>
-    )
+    );
     return xhtml;
   }
 
   handleClose = () => {
     this.setState({
       open: false
-    })
+    });
   }
 
   openForm = () => {
     this.setState({
       open: true
-    })
+    });
   }
 
   renderForm = () => {
     const { open } = this.state;
     let xhtml = null;
     xhtml = (
-      <TaskForm open={open} handleCloseForm={this.handleClose}/>
-    )
+      <TaskForm open={open} 
+        handleCloseForm={this.handleClose}/>
+    );
     return xhtml;
   }
 
@@ -80,14 +85,20 @@ class TaskBoard extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.taskboard}>
-        <Button variant="contained" color="primary" onClick={this.openForm}>
+        <Button variant="contained" 
+          color="primary" 
+          onClick={this.openForm}>
           <Add />Thêm mới công việc
         </Button>
         {this.renderBoard()}
         {this.renderForm()}
       </div>
-    )
+    );
   }
 }
+
+TaskBoard.propTypes = {
+  classes: PropTypes.object
+};
 
 export default withStyles(styles)(TaskBoard);
