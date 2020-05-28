@@ -131,5 +131,12 @@ vd indent: 2
 xem thêm tại link https://editorconfig.org/
 >Search editorconfig react : có thể lấy y chang về sử dụng
 
+## Run json server
+After create db.json file and create object
+
+```sh
+json-server db.json
+```
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
