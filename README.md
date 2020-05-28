@@ -121,7 +121,15 @@ npm install husky --save-dev
 ```sh
 npx mrm lint-staged
 ```
+>Xem lại video 118
 
+## Install EditorConfig extension
+>Cài đặt editerConfig extension (trên visual studio code)
+Dùng để thống nhất cấu hình cho code cho các member (vì có rất nhiều editor như subline, visual studio code)
+vd indent: 2
+
+xem thêm tại link https://editorconfig.org/
+>Search editorconfig react : có thể lấy y chang về sử dụng
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
