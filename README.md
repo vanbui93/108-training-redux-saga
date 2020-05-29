@@ -138,6 +138,17 @@ After create db.json file and create object
 json-server db.json
 ```
 
+## Tích hợp Redux
+Tham khảo trang chủ redux
+```link
+https://redux.js.org/api/applymiddleware
+```
+
+```sh
+npm install redux react-redux redux-thunk --save
+```
+
+
 ## Install Redux-Saga
 > Xử lý lỗi middleware, trì hoàn dispatch
 ```sh
