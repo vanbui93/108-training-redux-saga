@@ -140,9 +140,7 @@ json-server db.json
 
 ## Tích hợp Redux
 Tham khảo trang chủ redux
-```link
 https://redux.js.org/api/applymiddleware
-```
 
 ```sh
 npm install redux react-redux redux-thunk --save
@@ -161,5 +159,29 @@ $ npm install --save redux-saga
 $ npm install axios
 ```
 
+xem thêm npmjs.com/package/axios
+
+>xử lý trả về thành công hay thất bại, sử dụng `Interceptors`
+
+```js
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+// Do something before request is sent
+return config;
+}, function (error) {
+// Do something with request error
+return Promise.reject(error);
+});
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+// Do something with response data
+return response;
+}, function (error) {
+// Any status codes that falls outside the range of 2xx cause this function to trigger
+// Do something with response error
+return Promise.reject(error);
+});
+```
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

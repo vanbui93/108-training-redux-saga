@@ -8,7 +8,7 @@ import { STATUSES } from './../constants/index';
 import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 
 const listTask = [
   {
@@ -101,4 +101,16 @@ TaskBoard.propTypes = {
   classes: PropTypes.object
 };
 
-export default withStyles(styles)(TaskBoard);
+const mapStateToProps = (state, props) => {
+  return {
+    prop: state.prop
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(TaskBoard));
