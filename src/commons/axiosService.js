@@ -1,5 +1,7 @@
+import axios from "axios";
+
 //Viết riêng axios ở đây để dùng chung
-class AxiosService {
+class axiosService {
 
   constructor () {
     const instance = axios.create({});
@@ -24,7 +26,4 @@ class AxiosService {
 
 }
 
-
-
-
-export default AxiosService();
+export default new axiosService();

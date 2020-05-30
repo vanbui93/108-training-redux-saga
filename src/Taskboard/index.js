@@ -9,6 +9,8 @@ import TaskList from '../components/TaskList';
 import TaskForm from '../components/TaskForm';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as taskActions from './../actions/task';
+import { bindActionCreators } from 'redux';
 
 const listTask = [
   {
@@ -37,6 +39,12 @@ class TaskBoard extends Component {
     this.state = {
       open: false
     };
+  }
+
+  componentDidMount() {
+    const  {taskActionCreators} = this.props;
+    const {fetchListTask} = taskActionCreators;
+    fetchListTask();
   }
 
   renderBoard = () => {
@@ -98,7 +106,10 @@ class TaskBoard extends Component {
 }
 
 TaskBoard.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
+  taskActions: PropTypes.shape({
+    fetListTask: PropTypes.func
+  })
 };
 
 const mapStateToProps = (state, props) => {
@@ -109,7 +120,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    
+    taskActionCreators: bindActionCreators(taskActions, dispatch) //bindActionCreators Gộp nhiều action
   }
 }
 
