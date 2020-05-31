@@ -34,8 +34,8 @@ B3 fetchLishTaskSuccess(data response)
 export const fetchListTaskRequest = () => {
     return dispatch => {
         dispatch(fetchListTasks()); // gọi FETCH_TASK
-        taskApis.getListTask().then(data => {
-            dispatch(fetchListTaskSuccess(data));   //gọi FETCH_TASK_SUCCESS
+        taskApis.getListTask().then(res => {
+            dispatch(fetchListTaskSuccess(res.data));   //gọi FETCH_TASK_SUCCESS
         }).catch(error => {
             dispatch(fetchListTaskFailed(error));   //gọi FETCH_TASK_FAILED
         })

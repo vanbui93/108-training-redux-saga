@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import Taskboard from './../../Taskboard';
+import Taskboard from '../Taskboard';
 import theme from './../../commons/Theme';
 import { Provider } from 'react-redux';
 import configureStore from './../../redux/configureStore';
