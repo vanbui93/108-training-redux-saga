@@ -11,7 +11,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as taskActions from "../../actions/task";
 import { bindActionCreators } from "redux";
+<<<<<<< HEAD
 import { toast } from 'react-toastify';
+=======
+>>>>>>> 23e3f2348ea0233608abc7d9b872a1645dd3aace
 
 
 class TaskBoard extends Component {
@@ -71,7 +74,10 @@ class TaskBoard extends Component {
   };
 
   render() {
+<<<<<<< HEAD
     const notify = () => toast.success("Wow so easy !");
+=======
+>>>>>>> 23e3f2348ea0233608abc7d9b872a1645dd3aace
     const { classes } = this.props;
     return (
       <div className={classes.taskboard}>
@@ -79,7 +85,10 @@ class TaskBoard extends Component {
           <Add />
           Thêm mới công việc
         </Button>
+<<<<<<< HEAD
         <Button onClick={notify}>Notify !</Button>
+=======
+>>>>>>> 23e3f2348ea0233608abc7d9b872a1645dd3aace
         {this.renderBoard()}
         {this.renderForm()}
       </div>

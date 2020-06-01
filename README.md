@@ -159,6 +159,7 @@ $ npm install --save redux-saga
 $ npm install axios
 ```
 
+<<<<<<< HEAD
 ## Install Toastify
 Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify
 
@@ -166,5 +167,39 @@ Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastif
 npm install --save react-toastify
 ```
 
+=======
+xem thêm npmjs.com/package/axios
+
+>xử lý trả về thành công hay thất bại, sử dụng `Interceptors`
+
+```js
+// Add a request interceptor
+axios.interceptors.request.use(function (config) {
+// Do something before request is sent
+return config;
+}, function (error) {
+// Do something with request error
+return Promise.reject(error);
+});
+// Add a response interceptor
+axios.interceptors.response.use(function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+// Do something with response data
+return response;
+}, function (error) {
+// Any status codes that falls outside the range of 2xx cause this function to trigger
+// Do something with response error
+return Promise.reject(error);
+});
+```
+
+## Use BindActionCreators
+
+Khi App của bạn quá lớn việc dispatch từng action rất bất tiện<br>
+=> Vì thế có thể sử dụng **BindActionCreators** để chuyển tất các các action thành 1 **Object**.<br>
+Và mỗi function trong **Object** sẽ được bao bởi 1 dispatch function cho bạn
+
+
+>>>>>>> 23e3f2348ea0233608abc7d9b872a1645dd3aace
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
