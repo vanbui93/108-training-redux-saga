@@ -20,12 +20,12 @@ export const fetchListTaskFailed = error => {
     return {
         type: taskConstants.FETCH_TASK_FAILED,
         payload: {
-            error
+          error,
         }
     }
 }
 
-/* 
+/*
 B1 fetchListTaskRequest()
 B2 Reset: state tasks => []
 B3 fetchLishTaskSuccess(data response)

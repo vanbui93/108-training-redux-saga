@@ -159,15 +159,6 @@ $ npm install --save redux-saga
 $ npm install axios
 ```
 
-<<<<<<< HEAD
-## Install Toastify
-Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify
-
-```sh
-npm install --save react-toastify
-```
-
-=======
 xem thêm npmjs.com/package/axios
 
 >xử lý trả về thành công hay thất bại, sử dụng `Interceptors`
@@ -200,6 +191,12 @@ Khi App của bạn quá lớn việc dispatch từng action rất bất tiện<
 Và mỗi function trong **Object** sẽ được bao bởi 1 dispatch function cho bạn
 
 
->>>>>>> 23e3f2348ea0233608abc7d9b872a1645dd3aace
+## Install Toastify
+Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify	Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify
+
+```sh	
+npm install --save react-toastify	npm install --save react-toastify
+```
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

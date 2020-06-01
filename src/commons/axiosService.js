@@ -16,7 +16,7 @@ class axiosService {
 
   //khi gọi bị lỗi
   handleError(error) {
-    return error;
+    return Promise.reject(error);
   }
 
   //dùng để get url

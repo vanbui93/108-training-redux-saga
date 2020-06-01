@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core";
 import styles from "./styles";
-import Button from "@material-ui/core/Button";
+import {Button, Box} from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import Grid from "@material-ui/core/Grid";
 import { STATUSES } from "../../constants/index";
@@ -11,11 +11,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as taskActions from "../../actions/task";
 import { bindActionCreators } from "redux";
-<<<<<<< HEAD
-import { toast } from 'react-toastify';
-=======
->>>>>>> 23e3f2348ea0233608abc7d9b872a1645dd3aace
-
 
 class TaskBoard extends Component {
   constructor(props) {
@@ -74,10 +69,6 @@ class TaskBoard extends Component {
   };
 
   render() {
-<<<<<<< HEAD
-    const notify = () => toast.success("Wow so easy !");
-=======
->>>>>>> 23e3f2348ea0233608abc7d9b872a1645dd3aace
     const { classes } = this.props;
     return (
       <div className={classes.taskboard}>
@@ -85,10 +76,9 @@ class TaskBoard extends Component {
           <Add />
           Thêm mới công việc
         </Button>
-<<<<<<< HEAD
-        <Button onClick={notify}>Notify !</Button>
-=======
->>>>>>> 23e3f2348ea0233608abc7d9b872a1645dd3aace
+        <Box>
+          <Button variant="contained" color="primary" onClick={this.notify}>Notify !</Button>
+        </Box>
         {this.renderBoard()}
         {this.renderForm()}
       </div>
