@@ -1,12 +1,11 @@
+import axios from "axios";
+
 //Viết riêng axios ở đây để dùng chung
-class AxiosService {
+class axiosService {
 
   constructor () {
-    const instance = axios.create({
-      baseURL: 'https://some-domain.com/api/',
-      timeout: 1000,
-      headers: {'X-Custom-Header': 'foobar'}
-    });
+    const instance = axios.create({});
+    instance.interceptors.response.use(this.handleSusscess,this.handleError)
     this.instance = instance; //tạo ra 1 biến để gọi lại, sử dụng ngoài constructor
   }
 
@@ -22,12 +21,9 @@ class AxiosService {
 
   //dùng để get url
   get(url){
-    return this.instance.get(url)
+    return this.instance.get(url);
   }
 
 }
 
-
-
-
-export default AxiosService();
+export default new axiosService();

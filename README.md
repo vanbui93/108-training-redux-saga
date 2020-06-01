@@ -140,9 +140,7 @@ json-server db.json
 
 ## Tích hợp Redux
 Tham khảo trang chủ redux
-```link
 https://redux.js.org/api/applymiddleware
-```
 
 ```sh
 npm install redux react-redux redux-thunk --save
@@ -159,6 +157,13 @@ $ npm install --save redux-saga
 
 ```sh
 $ npm install axios
+```
+
+## Install Toastify
+Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify
+
+```sh
+npm install --save react-toastify
 ```
 
 Runs the app in the development mode.<br />
