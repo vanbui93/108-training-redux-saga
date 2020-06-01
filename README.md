@@ -195,7 +195,7 @@ Và mỗi function trong **Object** sẽ được bao bởi 1 dispatch function 
 Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify	Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify
 
 ```sh	
-npm install --save react-toastify	npm install --save react-toastify
+npm install --save react-toastify
 ```
 
 Runs the app in the development mode.<br />
