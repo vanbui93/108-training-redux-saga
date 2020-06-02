@@ -197,6 +197,28 @@ Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastif
 ```sh	
 npm install --save react-toastify
 ```
+## Side-Effect (Sử dụng redux-saga)
+
+- Dùng để xử lý Side-Effect và các hoạt động không đồng bộ
+- Là những tương tác của ứng dụng với thế giới bên ngoài: giao tiếp API, đọc ghi file, analytics event.
+- Thường được xử lý ở action hoặc middleware
+>Lưu ý: không xử lý ở reducer, vì reducer là pure function - hàm thuần túy
+
+* Redux-saga sẽ clean code hơn, giải quyết các quy trình phức tạp, dài hạn<br>
+Nếu app nhỏ thì nên dùng redux-thunk
+* Điểm yếu : Phức tạp, nặng về xử lý, tốn time cho member mới vào team<br>
+
+**Redux-saga**: sử dụng từ khóa **yield** và **genaretor**<br>
+Trả về ilterator (lấy giá trị trả về dùng next())
+
+```js
+function* helloGeneratorFunction() {  //ilterators (giống 1 array)
+ yield 2019 //chỉ xuất hiện trong GeneratorFunction
+ return "Tự học lập trình redux saga"
+}
+
+const result = helloGeneratorFunction().next();
+```
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

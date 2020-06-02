@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core";
 import styles from "./styles";
-import {Button, Box} from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 import Grid from "@material-ui/core/Grid";
 import { STATUSES } from "../../constants/index";
@@ -76,9 +76,6 @@ class TaskBoard extends Component {
           <Add />
           Thêm mới công việc
         </Button>
-        <Box>
-          <Button variant="contained" color="primary" onClick={this.notify}>Notify !</Button>
-        </Box>
         {this.renderBoard()}
         {this.renderForm()}
       </div>
