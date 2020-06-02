@@ -211,6 +211,10 @@ Nếu app nhỏ thì nên dùng redux-thunk
 **Redux-saga**: sử dụng từ khóa **yield** và **genaretor**<br>
 Trả về ilterator (lấy giá trị trả về dùng next())
 
+* **Iterators** <br>
+- Yield trả về iterator có giá trị done là false
+- Return trả về iterator có giá trị done là true
+
 ```js
 function* helloGeneratorFunction() {  //ilterators (giống 1 array)
  yield 2019 //chỉ xuất hiện trong GeneratorFunction
@@ -219,6 +223,8 @@ function* helloGeneratorFunction() {  //ilterators (giống 1 array)
 
 const result = helloGeneratorFunction().next();
 ```
+
+
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

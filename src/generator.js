@@ -4,7 +4,7 @@ function* helloGeneratorFunction() {
   // câu lệnh 1
  yield 2019  //dừng !!!
  // câu lệnh 2
- return "Tự học lập trình redux saga"
+ return "Tự học lập trình redux saga" //kết thúc throw error
 }
 
 const result = helloGeneratorFunction();   //ilterators (giống 1 array)
