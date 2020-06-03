@@ -236,6 +236,21 @@ function* helloGeneratorFunction() {
 Generator trong generator sử dụng yield*
 sử dụng yield* để nhường quyền cho 1 generator khác chạy
 
+```sh
+function* printName() {
+  yield 'redux saga'
+}
+
+function* hello() {
+  yield 'Xin chào'
+  yield* printName();
+  yield '.Kết thúc.'
+}
+const iterator = hello();
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+```
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
