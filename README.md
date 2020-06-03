@@ -273,5 +273,12 @@ console.log(iterator.next());
 - Lệnh take sẽ được kích hoạt và tham gia vào saga khi một action được dispatch. Tạm dừng đến khi nhận action.
 - Là blocking
 
+## Sử dụng Redux-saga Call
+- Thường sử dụng để request API, call API
+- Là blocking
+- Giống thực thi 1 function. Trả về Promise và sẽ tạm dừng saga cho đến khi promise được resolved
+
+
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

@@ -14,3 +14,9 @@ export const STATUSES = [
     label: "COMPLETE"
   }
 ];
+
+export const STATUS_CODE = {
+  SUSCESS:200,
+  CREATED: 201,
+  UPDATED: 202
+}
