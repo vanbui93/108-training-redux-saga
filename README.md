@@ -266,5 +266,12 @@ console.log(iterator.next());
 - Fork thuộc redux-saga/effects
 - Mỗi fork là : non-blocking, có nghĩa là có thể kích hoạt nhiều bộ theo dõi cùng 1 lúc (dispatch nhiều action cùng lúc)
 
+## Sử dụng Redux-saga Take
+- **Take** chỉ chạy khi action được dispatch
+- Dùng để phản hồi các action khi action được dispatch
+- Fork thuộc redux-saga/effects
+- Lệnh take sẽ được kích hoạt và tham gia vào saga khi một action được dispatch. Tạm dừng đến khi nhận action.
+- Là blocking
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
