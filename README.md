@@ -146,13 +146,6 @@ https://redux.js.org/api/applymiddleware
 npm install redux react-redux redux-thunk --save
 ```
 
-
-## Install Redux-Saga
-> Xử lý lỗi middleware, trì hoàn dispatch
-```sh
-$ npm install --save redux-saga
-```
-
 ## Install Axios
 
 ```sh
@@ -197,6 +190,21 @@ Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastif
 ```sh	
 npm install --save react-toastify
 ```
+
+
+## Install Redux-Saga
+Saga được gọi khi đăng kí theo dõi action
+> Dùng để Xử lý lỗi middleware, trì hoãn dispatch
+```sh
+$ npm install --save redux-saga
+```
+
+Hàm **run** để chương trình con bắt đầu theo dõi các **action**
+
+```js
+sagaMiddleware.run(mySaga)
+```
+
 ## Side-Effect (Sử dụng redux-saga)
 
 - Dùng để xử lý Side-Effect và các hoạt động không đồng bộ
@@ -211,7 +219,7 @@ Nếu app nhỏ thì nên dùng redux-thunk
 **Redux-saga**: sử dụng từ khóa **yield** và **genaretor**<br>
 Trả về ilterator (lấy giá trị trả về dùng next())
 
-* **Iterators** <br>
+**Iterators** <br>
 - Yield trả về iterator có giá trị done là false
 - Return trả về iterator có giá trị done là true
 
@@ -225,7 +233,7 @@ const result = helloGeneratorFunction().next();
 ```
 Vòng lặp vô tận
 
-```sh
+```js
 function* helloGeneratorFunction() {
   while (true) {
     yield "Tôi đang lắng nghe..."
@@ -236,16 +244,16 @@ function* helloGeneratorFunction() {
 Generator trong generator sử dụng yield*
 sử dụng yield* để nhường quyền cho 1 generator khác chạy
 
-```sh
+```js
 function* printName() {
   yield 'redux saga'
 }
-
 function* hello() {
   yield 'Xin chào'
   yield* printName();
   yield '.Kết thúc.'
 }
+
 const iterator = hello();
 console.log(iterator.next());
 console.log(iterator.next());
