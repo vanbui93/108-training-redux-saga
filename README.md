@@ -260,5 +260,11 @@ console.log(iterator.next());
 console.log(iterator.next());
 ```
 
+## Sử dụng Redux-saga Fork
+- **Fork** giống như 1 bộ theo dõi, người theo dõi action, là 1 **generator function**
+- Dùng để rẽ nhánh như if-else, switch-case
+- Fork thuộc redux-saga/effects
+- Mỗi fork là : non-blocking, có nghĩa là có thể kích hoạt nhiều bộ theo dõi cùng 1 lúc (dispatch nhiều action cùng lúc)
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
