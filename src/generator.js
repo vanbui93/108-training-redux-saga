@@ -1,17 +1,37 @@
-//Đối với denerator function sủ dụng vòng lặp vô tận vô cùng an toàn, vì hàm chỉ chạy với lời gọi hàm next()
-//than số done luôn là false
-console.log("Vòng lặp vô tận");
+console.log("Generator function: generator trong generator");
 
-function* helloGeneratorFunction() {
-  while (true) {
-    yield "Tôi đang lắng nghe..."
-  }
+//Xin chào => Redux saga => kết thúc
+
+function* printName() {
+  yield 'redux saga'
 }
 
-const iterator = helloGeneratorFunction();
+function* hello() {
+  yield 'Xin chào'
+  yield* printName();
+  yield '.Kết thúc.'
+}
 
-console.log('result 1',iterator.next());
-console.log('result 2',iterator.next());
+const iterator = hello();
+console.log(iterator.next());
+console.log(iterator.next());
+console.log(iterator.next());
+
+
+//Đối với denerator function sủ dụng vòng lặp vô tận vô cùng an toàn, vì hàm chỉ chạy với lời gọi hàm next()
+//than số done luôn là false
+// console.log("Vòng lặp vô tận");
+
+// function* helloGeneratorFunction() {
+//   while (true) {
+//     yield "Tôi đang lắng nghe..."
+//   }
+// }
+
+// const iterator = helloGeneratorFunction();
+
+// console.log('result 1',iterator.next());
+// console.log('result 2',iterator.next());
 
 
 // console.log("learning generator function");

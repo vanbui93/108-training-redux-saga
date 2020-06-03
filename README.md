@@ -223,7 +223,18 @@ function* helloGeneratorFunction() {  //ilterators (giống 1 array)
 
 const result = helloGeneratorFunction().next();
 ```
+Vòng lặp vô tận
 
+```sh
+function* helloGeneratorFunction() {
+  while (true) {
+    yield "Tôi đang lắng nghe..."
+  }
+}
+```
+
+Generator trong generator sử dụng yield*
+sử dụng yield* để nhường quyền cho 1 generator khác chạy
 
 
 Runs the app in the development mode.<br />
