@@ -278,6 +278,9 @@ console.log(iterator.next());
 - Là blocking
 - Giống thực thi 1 function. Trả về Promise và sẽ tạm dừng saga cho đến khi promise được resolved
 
+## Sử dụng Redux-saga Put
+- Dùng để dispatch action
+- Là non-blocking (có thể put cùng lúc nhiều action)
 
 
 Runs the app in the development mode.<br />
