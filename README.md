@@ -282,6 +282,9 @@ console.log(iterator.next());
 - Dùng để dispatch action
 - Là non-blocking (có thể put cùng lúc nhiều action)
 
+## Sử dụng Redux-saga Delay
+- Là blocking
+- Để chặn thực thi trong 1 khoảng thời gian miliseconds
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
