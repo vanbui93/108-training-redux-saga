@@ -286,5 +286,11 @@ console.log(iterator.next());
 - Là blocking
 - Để chặn thực thi trong 1 khoảng thời gian miliseconds
 
+## Sử dụng Redux-saga TakeLatest
+- Thay thế cho fork: **Là phiên bản của fork** đã được bổ sung
+- Hủy bỏ quy trình cũ khi có một quy trình mới bắt đầu.
+- Nếu thực hiện một loạt các action, takeLatest chỉ thực thi và lấy kết quả của action cuối cùng.
+- Không cần vòng lặp vô hạn
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
