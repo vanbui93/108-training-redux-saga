@@ -1,7 +1,7 @@
 //root saga là điểm bắt đầu, là 1 generator function
 //điều phối tất cả saga, khởi động tất cả các saga để chạy nền
 
-import { fork, take, call, put, delay } from 'redux-saga/effects';
+import { fork, take, call, put, delay, takeLatest } from 'redux-saga/effects';
 import * as taskTypes from './../constants/task';
 import { getListTask } from './../apis/task';
 import { STATUS_CODE } from './../constants/index';
@@ -24,7 +24,7 @@ import { showLoading, hideLoading } from './../actions/ui';
 //fork rẻ nhánh các function
 
 function* watchFetchListTaskAction() {
-  while(true) {                                     //dùng vòng lặp vô tận để take khi nào cũng được lắng nghe
+  while (true) {                                     //dùng vòng lặp vô tận để take khi nào cũng được lắng nghe
 
     yield take(taskTypes.FETCH_TASK);               //take chạy khi action được dispatch
     //---đoạn code từ đây trở đi bị dừng BLOCK---//
@@ -54,8 +54,15 @@ function* watchCreateTaskAction() {
 
 }
 
+function* filterTaskSaga({ payload }) {
+  yield delay(500);     //sau khi người dùng nhập đến kí tự cuối cùng, nữa giây sau thì mới thực hiện lấy kết quả
+  const { keyword } = payload;
+  console.log('filter task_saga running', keyword);
+}
+
 function* rootSaga() {
   yield fork(watchFetchListTaskAction);
   yield fork(watchCreateTaskAction);
+  yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);               //taskLatest lắng nghe action
 }
 export default rootSaga;

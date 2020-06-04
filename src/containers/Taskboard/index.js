@@ -71,17 +71,20 @@ class TaskBoard extends Component {
 
   loadData = () => {
     const { taskActionCreators } = this.props;
-    const { fetchListTaskRequest } = taskActionCreators;
-    fetchListTaskRequest();
+    const { fetchListTasks } = taskActionCreators;
+    fetchListTasks();
   };
 
   handleFilter = (e) => {
-    console.log('e', e);
+    const { value } = e.target;
+    const { taskActionCreators } = this.props;
+    const { filterTask } = taskActionCreators;
+    filterTask(value);
   }
 
   renderSearchBox = () => {
     let xhtml = null;
-    xhtml = <SearchBox handleChange={this.handleFilter}/>
+    xhtml = <SearchBox handleChange={this.handleFilter} />
     return xhtml;
   }
 
@@ -108,6 +111,7 @@ TaskBoard.propTypes = {
   classes: PropTypes.object,
   taskActions: PropTypes.shape({
     fetListTask: PropTypes.func,
+    filterTask: PropTypes.func,
   }),
   listTask: PropTypes.array,
 };
