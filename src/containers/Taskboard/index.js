@@ -10,6 +10,7 @@ import TaskForm from "../../components/TaskForm";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as taskActions from "../../actions/task";
+import * as modalActions from "../../actions/modal";
 import { bindActionCreators } from "redux";
 import SearchBox from "../../components/SearchBox";
 
@@ -114,6 +115,12 @@ TaskBoard.propTypes = {
     fetListTask: PropTypes.func,
     filterTask: PropTypes.func,
   }),
+  modalActions: PropTypes.shape({
+    showModal: PropTypes.func,
+    hideModal: PropTypes.func,
+    changeModalTitle: PropTypes.func,
+    changeModalContent: PropTypes.func,
+  }),
   listTask: PropTypes.array,
 };
 
@@ -126,6 +133,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     taskActionCreators: bindActionCreators(taskActions, dispatch), //bindActionCreators Gộp nhiều action
+    modalActionCreators: bindActionCreators(modalActions, dispatch), //bindActionCreators Gộp nhiều action
   };
 };
 
