@@ -1,45 +1,67 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Modal, Grid, Button, Box } from '@material-ui/core';
 
 import styles from './styles';
+import { PropTypes } from 'prop-types';
+import CloseIcon from '@material-ui/icons/Close';
 
 class TaskForm extends Component {
   render() {
-    var { open,handleCloseForm } = this.props;
+    var { classes, open, handleCloseForm } = this.props;
     return (
-      <Dialog open={open} onClose={handleCloseForm} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Thêm mới công việc</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseForm} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleCloseForm} color="primary">
-            Subscribe
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <Modal open={open} onClose={handleCloseForm}>
+        <div className={classes.modal}>
+          <div className={classes.header}>
+            <span className={classes.title}>Thêm mới</span>
+            <CloseIcon className={classes.icon} onClick={handleCloseForm}/>
+          </div>
+          <div className={classes.content}>
+            <form>
+              <Grid container spacing={2}>
+                <Grid item md={12}>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label="Email Address"
+                    type="email"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item md={12}>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="password"
+                    label="password"
+                    type="txt"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item md={12}>
+                  <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+                    <Box m={1}>
+                      <Button variant="contained" color="primary">Lưu lại</Button>
+                    </Box>
+                    <Box m={1}>
+                      <Button variant="contained" color="secondary" onClick={handleCloseForm}>Hủy bỏ</Button>
+                    </Box>
+                  </Box>
+                </Grid>
+              </Grid>
+            </form>
+          </div>
+        </div>
+      </Modal>
     )
   }
 }
+
+TaskForm.propTypes = {
+  classes: PropTypes.object,
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+}
+
 export default withStyles(styles)(TaskForm);

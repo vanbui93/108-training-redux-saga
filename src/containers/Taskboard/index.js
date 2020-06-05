@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core";
+import { withStyles, Box } from "@material-ui/core";
 import styles from "./styles";
 import { Button } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import * as taskActions from "../../actions/task";
 import { bindActionCreators } from "redux";
 import SearchBox from "../../components/SearchBox";
+
 
 class TaskBoard extends Component {
   constructor(props) {

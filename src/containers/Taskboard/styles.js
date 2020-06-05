@@ -1,6 +1,9 @@
 const styles = (theme) => ({
   taskboard: {
-    alignItems: "center"
+    alignItems: "center",
+    '& > *': {
+      margin: theme.spacing(1),
+    },
   },
   shape: {
     padding: 20,
