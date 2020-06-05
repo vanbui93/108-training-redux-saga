@@ -292,5 +292,13 @@ console.log(iterator.next());
 - Nếu thực hiện một loạt các action, takeLatest chỉ thực thi và lấy kết quả của action cuối cùng.
 - Không cần vòng lặp vô hạn
 
+## Sử dụng Redux-saga Select
+- Lấy data từ store tại saga
+
+```js
+const list = yield select(state => state.task.listTask);
+```
+
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
