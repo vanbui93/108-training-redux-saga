@@ -72,5 +72,6 @@ function* rootSaga() {
   yield fork(watchFetchListTaskAction);
   yield fork(watchCreateTaskAction);
   yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);               //taskLatest lắng nghe action
+  // yield takeEvery(taskTypes.FILTER_TASK, filterTaskSaga);
 }
 export default rootSaga;

@@ -299,6 +299,15 @@ console.log(iterator.next());
 const list = yield select(state => state.task.listTask);
 ```
 
+## Sử dụng Redux-saga TakeEvery
+- TakeEvery sử dụng giống TakeLatest, nhưng TakeEvery chạy ngay lập tực nếu được kích hoạt
+- không cần tính số lần chạy
+- không  biết là action trước đó đã chạy xong chưa
+
+```js
+yield takeEvery(taskTypes.FILTER_TASK, filterTaskSaga);
+```
+
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
