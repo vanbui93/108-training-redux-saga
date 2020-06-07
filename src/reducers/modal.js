@@ -2,6 +2,8 @@ import * as types from './../constants/modal';
 
 const initialState = {
   showModal: false,
+  title: '',
+  component: null,  
 };
 
 const modalReducer = (state = initialState, action) => {
@@ -22,14 +24,14 @@ const modalReducer = (state = initialState, action) => {
       const { title } = action.payload;
       return {
         ...state,
-        title: title,
+        title,
       }
     }
     case types.CHANGE_MODAL_CONTENT: {
       const { component } = action.payload;
       return {
         ...state,
-        component: component,
+        component,
       }
     }
     default:

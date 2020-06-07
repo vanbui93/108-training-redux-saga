@@ -7,6 +7,7 @@ import configureStore from './../../redux/configureStore';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GloballLoading from './../../components/GloballLoading/index';
+import Modal from '../../components/Modal';
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ export default class App extends Component {
         <ThemeProvider theme={theme}>
           <ToastContainer/>
           <GloballLoading/>
+          <Modal/>
           <Taskboard />
         </ThemeProvider>
       </Provider>

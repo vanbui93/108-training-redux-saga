@@ -10,6 +10,9 @@ export const hideModal = () => ({
 
 export const changeModalTitle = (title) => ({
   type: modalTypes.CHANGE_MODAL_TITLE,
+  payload: {
+    title,
+  },
 });
 
 export const changeModalContent = (component) => ({

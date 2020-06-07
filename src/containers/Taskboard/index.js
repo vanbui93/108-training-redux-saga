@@ -1,18 +1,17 @@
-import React, { Component } from "react";
-import { withStyles, Box } from "@material-ui/core";
-import styles from "./styles";
-import { Button } from "@material-ui/core";
-import { Add } from "@material-ui/icons";
+import { Button, withStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import { STATUSES } from "../../constants/index";
-import TaskList from "../../components/TaskList";
-import TaskForm from "../../components/TaskForm";
+import { Add } from "@material-ui/icons";
 import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as taskActions from "../../actions/task";
-import * as modalActions from "../../actions/modal";
 import { bindActionCreators } from "redux";
+import * as modalActions from "../../actions/modal";
+import * as taskActions from "../../actions/task";
 import SearchBox from "../../components/SearchBox";
+import TaskForm from "./../TaskForm/index";
+import TaskList from "./../../components/TaskList";
+import { STATUSES } from "../../constants/index";
+import styles from "./styles";
 
 
 class TaskBoard extends Component {
@@ -59,9 +58,11 @@ class TaskBoard extends Component {
   };
 
   openForm = () => {
-    this.setState({
-      open: true,
-    });
+    const { modalActionCreators } = this.props;
+    const { showModal, changeModalTitle, changeModalContent } = modalActionCreators;
+    showModal();
+    changeModalTitle("Thêm mới công việc");    
+    changeModalContent(<TaskForm />);
   };
 
   renderForm = () => {
@@ -103,7 +104,7 @@ class TaskBoard extends Component {
         </Button>
         {this.renderSearchBox()}
         {this.renderBoard()}
-        {this.renderForm()}
+        {/* {this.renderForm()} */}
       </div>
     );
   }
@@ -133,7 +134,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     taskActionCreators: bindActionCreators(taskActions, dispatch), //bindActionCreators Gộp nhiều action
-    modalActionCreators: bindActionCreators(modalActions, dispatch), //bindActionCreators Gộp nhiều action
+    modalActionCreators: bindActionCreators(modalActions, dispatch),
   };
 };
 
