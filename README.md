@@ -266,6 +266,21 @@ console.log(iterator.next());
 - Fork thuộc redux-saga/effects
 - Mỗi fork là : non-blocking, có nghĩa là có thể kích hoạt nhiều bộ theo dõi cùng 1 lúc (dispatch nhiều action cùng lúc)
 
+```js
+function* watchFetchListTaskAction() {
+  while (true) {  
+    //somthings
+  }
+}
+function* watchCreateTaskAction() {
+  //somthings
+}
+function* rootSaga() {
+  yield fork(watchFetchListTaskAction);
+  yield fork(watchCreateTaskAction);
+}
+```
+
 ## Sử dụng Redux-saga Take
 - **Take** chỉ chạy khi action được dispatch
 - Dùng để phản hồi các action khi action được dispatch
@@ -273,18 +288,37 @@ console.log(iterator.next());
 - Lệnh take sẽ được kích hoạt và tham gia vào saga khi một action được dispatch. Tạm dừng đến khi nhận action.
 - Là blocking
 
+```js
+yield take(taskTypes.FETCH_TASK); 
+```
+
 ## Sử dụng Redux-saga Call
-- Thường sử dụng để request API, call API
+- Thường sử dụng để **request API, call API**
 - Là blocking
 - Giống thực thi 1 function. Trả về Promise và sẽ tạm dừng saga cho đến khi promise được resolved
 
+```js
+const resp = yield call(getListTask);    //getListTask gọi api  ./../apis/task
+```
+
 ## Sử dụng Redux-saga Put
-- Dùng để dispatch action
+- Dùng để **dispatch action**
 - Là non-blocking (có thể put cùng lúc nhiều action)
 
+```js
+yield put(showLoading());   //dispatch action SHOW_LOADING
+```
 ## Sử dụng Redux-saga Delay
 - Là blocking
 - Để chặn thực thi trong 1 khoảng thời gian miliseconds
+
+```js
+function* watchFetchListTaskAction() {
+  while (true) {                                     //dùng vòng lặp vô tận để take khi nào cũng được lắng nghe
+    yield delay(500);
+  }
+}
+```
 
 ## Sử dụng Redux-saga TakeLatest
 - Thay thế cho fork: **Là phiên bản của fork** đã được bổ sung
@@ -292,8 +326,27 @@ console.log(iterator.next());
 - Nếu thực hiện một loạt các action, takeLatest chỉ thực thi và lấy kết quả của action cuối cùng.
 - Không cần vòng lặp vô hạn
 
+```js
+function* filterTaskSaga({ payload }) {
+  yield delay(500);     //sau khi người dùng nhập đến kí tự cuối cùng, nữa giây sau thì mới thực hiện lấy kết quả
+  const { keyword } = payload;
+  const list = yield select(state => state.task.listTask);
+  const filteredTask = list.filter(task =>
+    task.title
+      .trim()
+      .toLowerCase()
+      .includes(keyword.trim().toLowerCase()),
+  );
+  yield put(filterTaskSuccess(filteredTask));   //dispatch action filterTaskSuccess
+}
+
+function* rootSaga() {
+  yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);               //taskLatest lắng nghe action
+}
+```
+
 ## Sử dụng Redux-saga Select
-- Lấy data từ store tại saga
+- **Lấy data** từ store tại saga
 
 ```js
 const list = yield select(state => state.task.listTask);
@@ -303,7 +356,6 @@ const list = yield select(state => state.task.listTask);
 - TakeEvery sử dụng giống TakeLatest, nhưng TakeEvery chạy ngay lập tực nếu được kích hoạt
 - không cần tính số lần chạy
 - không  biết là action trước đó đã chạy xong chưa
-
 ```js
 yield takeEvery(taskTypes.FILTER_TASK, filterTaskSaga);
 ```
