@@ -363,6 +363,53 @@ const list = yield select(state => state.task.listTask);
 ```js
 yield takeEvery(taskTypes.FILTER_TASK, filterTaskSaga);
 ```
+## Sử dụng Redux Form
+Xem chi tiết trên trang chủ https://redux-form.com/8.3.0/ <br>
+cài đặt
+```sh
+npm install redux-form
+```
+
+Làm theo các bước ở đây https://redux-form.com/8.3.0/docs/gettingstarted.md/ <br>
+- Trong reducer 
+
+```js
+import { reducer as formReducer } from 'redux-form'
+const rootReducer = combineReducers({
+  // ...your other reducers here
+  // you have to pass formReducer under 'form' key,
+  // for custom keys look up the docs for 'getFormState'
+  form: formReducer
+})
+```
+
+- Trong component form (TaskForm)
+
+```js
+class TaskForm extends Component {
+
+handleSubmitForm = (data) => {
+  console.log('data',data);
+}
+
+render() {
+<form onSubmit= { handleSubmit(this.handleSubmitForm) } >
+    {/* form body*/}
+</form>
+}
+
+const withReduxForm = reduxForm({
+  form: 'formName'
+});
+
+export default compose {
+  {/* other component*/}
+  withReduxForm,
+)(TaskForm);
+}
+
+}
+```
 
 
 Runs the app in the development mode.<br />

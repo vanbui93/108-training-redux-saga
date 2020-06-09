@@ -6,15 +6,26 @@ import styles from './styles';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from "redux";
 import * as ModalActions from "../../actions/modal";
-
+import { Field, reduxForm } from 'redux-form';
 
 class TaskForm extends Component {
+
+  handleSubmitForm = (data) => {
+    console.log('data',data);
+  }
+
   render() {
-    var { classes, modalActionCreators } = this.props;
+    var { classes, modalActionCreators,handleSubmit } = this.props;
     const { hideModal } = modalActionCreators;
     return (
-      <form>
+      <form onSubmit={handleSubmit(this.handleSubmitForm)}>
         <Grid container spacing={2}>
+          <Grid item md={12}>
+          <label htmlFor="title">First Name</label>
+            <Field name="title"
+              component="input"
+              type="text" />
+          </Grid>
           <Grid item md={12}>
             <TextField
               autoFocus
@@ -38,7 +49,7 @@ class TaskForm extends Component {
           <Grid item md={12}>
             <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
               <Box m={1}>
-                <Button variant="contained" color="primary">Lưu lại</Button>
+                <Button variant="contained" color="primary" type="submit">Lưu lại</Button>
               </Box>
               <Box m={1}>
                 <Button variant="contained" color="secondary" onClick={hideModal}>Hủy bỏ</Button>
@@ -56,6 +67,7 @@ TaskForm.propTypes = {
   modalActionCreators: PropTypes.shape({
     hideModal: PropTypes.func,
   }),
+  handleSubmit: PropTypes.func,
 }
 
 const mapStateToProps = (state, props) => {
@@ -75,4 +87,15 @@ const withConnect = connect(
   mapDispatchToProps
 );
 
-export default compose(withStyles(styles), withConnect)(TaskForm);
+
+const formName = 'TASK_MANAGEMENT';
+
+const withReduxForm = reduxForm({
+  form: 'formName'
+});
+
+export default compose
+  (withStyles(styles),
+  withConnect,
+  withReduxForm,
+)(TaskForm);

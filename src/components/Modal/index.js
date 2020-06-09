@@ -1,16 +1,16 @@
+import { Modal } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import { withStyles } from "@material-ui/styles";
+import { PropTypes } from 'prop-types';
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withStyles } from "@material-ui/styles";
 import { bindActionCreators, compose } from "redux";
 import * as ModalActions from './../../actions/modal';
-import { PropTypes } from 'prop-types';
-import CloseIcon from "@material-ui/icons/Close";
 import styles from './styles';
-import { Modal } from "@material-ui/core";
 
 class CommonModal extends Component {
     render() {
-        const { classes, onClose, open, component, modalActionCreators, title } = this.props;
+        const { classes, open, component, modalActionCreators, title } = this.props;
         const { hideModal } = modalActionCreators;
         return (
             <Modal open={open} onClose={hideModal}>
