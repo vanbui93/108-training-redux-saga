@@ -185,7 +185,7 @@ Và mỗi function trong **Object** sẽ được bao bởi 1 dispatch function 
 
 
 ## Install Toastify
-Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify	Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify
+Dùng để hiển thị thông báo https://www.npmjs.com/package/react-toastify
 
 ```sh	
 npm install --save react-toastify
@@ -199,7 +199,8 @@ Saga được gọi khi đăng kí theo dõi action
 $ npm install --save redux-saga
 ```
 
-Hàm **run** để chương trình con bắt đầu theo dõi các **action**
+Hàm **run** để chương trình con bắt đầu theo dõi các **action** <br>
+cài đặt trong file `redux/configureStore.js`
 
 ```js
 sagaMiddleware.run(mySaga)
@@ -229,7 +230,10 @@ function* helloGeneratorFunction() {  //ilterators (giống 1 array)
  return "Tự học lập trình redux saga"
 }
 
-const result = helloGeneratorFunction().next();
+const result = helloGeneratorFunction();
+console.log(result.next()); //=> done: false
+console.log(result.next()); //=> done: true
+
 ```
 Vòng lặp vô tận
 
