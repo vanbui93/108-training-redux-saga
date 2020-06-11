@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from "redux";
 import * as ModalActions from "../../actions/modal";
 import { Field, reduxForm } from 'redux-form';
+import renderTextField from './../../components/FormHelper/TextField/index';
 
 class TaskForm extends Component {
 
@@ -21,28 +22,26 @@ class TaskForm extends Component {
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
         <Grid container spacing={2}>
           <Grid item md={12}>
-          <label htmlFor="title">First Name</label>
-            <Field name="title"
-              component="input"
-              type="text" />
-          </Grid>
-          <Grid item md={12}>
-            <TextField
-              autoFocus
+            <Field
+              id="title"
+              label="Tiêu đề"
+              className={classes.textField}
               margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
+              name="title"
+              component={renderTextField}
               fullWidth
             />
           </Grid>
           <Grid item md={12}>
-            <TextField
-              autoFocus
+            <Field
+              id="description"
+              label="Mô tả"
+              name="description"
+              multiple
+              rowsMax="4"
+              className={classes.textField}
               margin="dense"
-              id="password"
-              label="password"
-              type="txt"
+              component={renderTextField}
               fullWidth
             />
           </Grid>
