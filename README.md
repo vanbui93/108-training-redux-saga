@@ -442,5 +442,28 @@ minLengths = value => {
 />
 ```
 
+2. Cách 2 Truyền vào 1 object và validation (Synchronous Validation Example)
+validate hoạt động dựa vào name của Field
+
+```js
+<Field
+  //something
+  name="title"
+/>
+
+const withReduxForm = reduxForm({
+  form: 'formName',
+  validate
+});
+
+const validate = (values) => {
+  const errors = [];
+  errors['title'] = 'Lỗi xảy ra'
+  return errors;
+}
+export default validate;
+```
+
+
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

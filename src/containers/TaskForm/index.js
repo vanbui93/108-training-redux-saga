@@ -8,6 +8,7 @@ import { bindActionCreators, compose } from "redux";
 import * as ModalActions from "../../actions/modal";
 import { Field, reduxForm } from 'redux-form';
 import renderTextField from './../../components/FormHelper/TextField/index';
+import validate from './validate';
 
 class TaskForm extends Component {
 
@@ -46,7 +47,6 @@ class TaskForm extends Component {
               name="title"
               component={renderTextField}
               fullWidth
-              validate={this.required, this.minLengths}
             />
           </Grid>
           <Grid item md={12}>
@@ -107,7 +107,8 @@ const withConnect = connect(
 const formName = 'TASK_MANAGEMENT';
 
 const withReduxForm = reduxForm({
-  form: 'formName'
+  form: 'formName',
+  validate
 });
 
 export default compose
