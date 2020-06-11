@@ -33,7 +33,7 @@ class TaskForm extends Component {
   }
 
   render() {
-    var { classes, modalActionCreators, handleSubmit } = this.props;
+    var { classes, modalActionCreators, handleSubmit,invalid,submitting } = this.props;
     const { hideModal } = modalActionCreators;
     return (
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
@@ -65,7 +65,7 @@ class TaskForm extends Component {
           <Grid item md={12}>
             <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
               <Box m={1}>
-                <Button variant="contained" color="primary" type="submit">Lưu lại</Button>
+                <Button variant="contained" color="primary" type="submit" disabled={invalid || submitting}>Lưu lại</Button>
               </Box>
               <Box m={1}>
                 <Button variant="contained" color="secondary" onClick={hideModal}>Hủy bỏ</Button>
@@ -84,6 +84,8 @@ TaskForm.propTypes = {
     hideModal: PropTypes.func,
   }),
   handleSubmit: PropTypes.func,
+  invalid:PropTypes.bool ,
+  submitting:PropTypes.bool ,
 }
 
 const mapStateToProps = (state, props) => {

@@ -418,7 +418,7 @@ Có 2 cách
 - Điền validaion cho từng Field (Field-Level Validation Example)
 - Truyền vào 1 object và validation toàn bộ ở reduxForm (Synchronous Validation Example)
 
-1. Cách 1: Điền validaion cho từng Field (Field-Level Validation Example)
+### Cách 1: Điền validaion cho từng Field (Field-Level Validation Example)
 ```js
 required = (value) => {
   let error = 'Vui lòng nhập tiêu đề';
@@ -442,8 +442,9 @@ minLengths = value => {
 />
 ```
 
-2. Cách 2 Truyền vào 1 object và validation (Synchronous Validation Example)
-validate hoạt động dựa vào name của Field
+### Cách 2 Truyền vào 1 object và validation (Synchronous Validation Example)
+
+**validate hoạt động dựa vào name của Field**
 
 ```js
 <Field
@@ -462,6 +463,15 @@ const validate = (values) => {
   return errors;
 }
 export default validate;
+```
+
+### Check Props để submit
+props sẽ chuyển state của redux-form thành props
+
+```js
+var { invalid,submitting } = this.props;
+
+<Button disabled={invalid || submitting}>Lưu lại</Button>
 ```
 
 
