@@ -1,5 +1,4 @@
-import * as taskApis from './../apis/task';
-import * as taskConstants from './../constants/task'
+import * as taskConstants from './../constants/task';
 
 export const fetchListTasks = () => {
   return {

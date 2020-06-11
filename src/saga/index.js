@@ -1,13 +1,12 @@
 //root saga là điểm bắt đầu, là 1 generator function
 //điều phối tất cả saga, khởi động tất cả các saga để chạy nền
 
-import { fork, take, call, put, delay, takeLatest, select } from 'redux-saga/effects';
-import * as taskTypes from './../constants/task';
+import { call, delay, fork, put, select, take, takeLatest } from 'redux-saga/effects';
+import { fetchListTaskFailed, fetchListTaskSuccess, filterTaskSuccess } from './../actions/task';
+import { hideLoading, showLoading } from './../actions/ui';
 import { getListTask } from './../apis/task';
 import { STATUS_CODE } from './../constants/index';
-import { fetchListTaskFailed, fetchListTaskSuccess } from './../actions/task';
-import { showLoading, hideLoading } from './../actions/ui';
-import { filterTaskSuccess } from './../actions/task';
+import * as taskTypes from './../constants/task';
 
 
 /**

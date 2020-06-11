@@ -1,35 +1,18 @@
 import { Box, Button, Grid, withStyles } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
 import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
-import styles from './styles';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from "redux";
-import * as ModalActions from "../../actions/modal";
 import { Field, reduxForm } from 'redux-form';
+import * as ModalActions from "../../actions/modal";
 import renderTextField from './../../components/FormHelper/TextField/index';
+import styles from './styles';
 import validate from './validate';
 
 class TaskForm extends Component {
 
   handleSubmitForm = (data) => {
     console.log('data', data);
-  }
-
-  required = (value) => {
-    let error = 'Vui lòng nhập tiêu đề';
-    if (value !== null && typeof value !== 'undefined' && value.trim() !== '') {
-      error = null;
-    }
-    return error;
-  }
-
-  minLengths = value => {
-    let error = null;
-    if (value && value.length < 5) {
-      error = 'Tiêu đề phải từ 5 kí tự';
-    }
-    return error;
   }
 
   render() {

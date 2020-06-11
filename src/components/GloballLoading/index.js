@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import styles from './styles';
 import { withStyles } from '@material-ui/styles';
-import LoadingIcon from './../../assets/images/loading.gif';
 import { PropTypes } from 'prop-types';
-import { compose } from 'redux';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
+import LoadingIcon from './../../assets/images/loading.gif';
+import styles from './styles';
 
 class GloballLoading extends Component {
   render() {
