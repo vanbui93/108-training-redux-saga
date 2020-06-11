@@ -14,7 +14,7 @@ const renderTextField = ({
       label={label}
       placeholder={label}
       error={touched && invalid}
-      helperText={touched && error}
+      helperText={touched && error}  //helperText hiển thị thông báo error
       {...input}
       {...custom}
     />

@@ -12,11 +12,27 @@ import renderTextField from './../../components/FormHelper/TextField/index';
 class TaskForm extends Component {
 
   handleSubmitForm = (data) => {
-    console.log('data',data);
+    console.log('data', data);
+  }
+
+  required = (value) => {
+    let error = 'Vui lòng nhập tiêu đề';
+    if (value !== null && typeof value !== 'undefined' && value.trim() !== '') {
+      error = null;
+    }
+    return error;
+  }
+
+  minLengths = value => {
+    let error = null;
+    if (value && value.length < 5) {
+      error = 'Tiêu đề phải từ 5 kí tự';
+    }
+    return error;
   }
 
   render() {
-    var { classes, modalActionCreators,handleSubmit } = this.props;
+    var { classes, modalActionCreators, handleSubmit } = this.props;
     const { hideModal } = modalActionCreators;
     return (
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
@@ -30,6 +46,7 @@ class TaskForm extends Component {
               name="title"
               component={renderTextField}
               fullWidth
+              validate={this.required, this.minLengths}
             />
           </Grid>
           <Grid item md={12}>
@@ -95,6 +112,6 @@ const withReduxForm = reduxForm({
 
 export default compose
   (withStyles(styles),
-  withConnect,
-  withReduxForm,
-)(TaskForm);
+    withConnect,
+    withReduxForm,
+  )(TaskForm);

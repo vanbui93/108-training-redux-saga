@@ -410,7 +410,37 @@ export default compose {
 
 }
 ```
+## Redux-form: Validation - Ràng buộc dữ liệu
+Xem thêm https://redux-form.com/8.2.2/examples/syncvalidation/ <br>
 
+Synchronous Validation Example - Thực hiện ở phía client
+Có 2 cách 
+- Điền validaion cho từng Field (Field-Level Validation Example)
+- Truyền vào 1 object và validation toàn bộ ở reduxForm (Synchronous Validation Example)
+
+1. Cách 1: Điền validaion cho từng Field (Field-Level Validation Example)
+```js
+required = (value) => {
+  let error = 'Vui lòng nhập tiêu đề';
+  if (value !== null && typeof value !== 'undefined' && value.trim() !== '') {
+    error = null;
+  }
+  return error;
+}
+
+minLengths = value => {
+  let error = null;
+  if (value && value.length < 5) {
+    error = 'Tiêu đề phải từ 5 kí tự';
+  }
+  return error;
+}
+
+<Field
+  //something
+  validate={this.required, this.minLengths}
+/>
+```
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
