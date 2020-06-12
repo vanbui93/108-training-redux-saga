@@ -8,7 +8,7 @@ const url ='tasks';
 export const getListTask = () => {
     return axiosService.get(`${API_ENDPOINT}/${url}`);  //ở đây gọi hàm get
 }
-
+//http://localhost:3000/tasks   METHOD: POST
 export const addTask = data => {
-  return axiosService.post(`${API_ENDPOINT}/${url}`,data)
+  return axiosService.post(`${API_ENDPOINT}/${url}`,data);
 }

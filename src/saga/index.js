@@ -1,12 +1,14 @@
 //root saga là điểm bắt đầu, là 1 generator function
 //điều phối tất cả saga, khởi động tất cả các saga để chạy nền
 
-import { call, delay, fork, put, select, take, takeLatest,takeEvery } from 'redux-saga/effects';
-import { fetchListTaskFailed, fetchListTaskSuccess, filterTaskSuccess, addTask } from './../actions/task';
+import { call, delay, fork, put, select, take, takeLatest, takeEvery } from 'redux-saga/effects';
+import { fetchListTaskFailed, fetchListTaskSuccess, filterTaskSuccess, addTaskFailed } from './../actions/task';
 import { hideLoading, showLoading } from './../actions/ui';
-import { getListTask } from './../apis/task';
-import { STATUS_CODE } from './../constants/index';
+import { getListTask, addTask } from './../apis/task';
+import { STATUS_CODE, STATUSES } from './../constants/index';
 import * as taskTypes from './../constants/task';
+import { addTaskSuccess } from './../actions/task';
+import { hideModal } from '../actions/modal';
 
 
 /**
@@ -67,15 +69,24 @@ function* filterTaskSaga({ payload }) {
   yield put(filterTaskSuccess(filteredTask));   //dispatch action filterTaskSuccess
 }
 
-function* addTaskSaga (payload) {
-  const {title,description} = payload;
+function* addTaskSaga({ payload }) {
+  const { title, description } = payload;
   yield put(showLoading());
   const resp = yield call(addTask, {
     title,
     description,
     status: STATUSES[0].value,
   });
-
+  const { data, status } = resp;
+  if (status === STATUS_CODE.CREATED) {
+    yield put(addTaskSuccess(data));
+    yield put(hideModal());
+  } else {
+    yield put(addTaskFailed(data));
+    yield put(hideModal());
+  }
+  yield delay(1000);
+  yield put(hideLoading());
 }
 
 function* rootSaga() {

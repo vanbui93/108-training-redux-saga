@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators, compose } from "redux";
 import { Field, reduxForm } from 'redux-form';
 import * as ModalActions from "../../actions/modal";
+import * as taskActions from "../../actions/task";
 import renderTextField from './../../components/FormHelper/TextField/index';
 import styles from './styles';
 import validate from './validate';
@@ -12,11 +13,15 @@ import validate from './validate';
 class TaskForm extends Component {
 
   handleSubmitForm = (data) => {
+    const { taskActionCreators } = this.props;
+    const { addTask } = taskActionCreators;
+    const { title, description } = data;
+    addTask(title,description);
     console.log('data', data);
   }
 
   render() {
-    var { classes, modalActionCreators, handleSubmit,invalid,submitting } = this.props;
+    var { classes, modalActionCreators, handleSubmit, invalid, submitting } = this.props;
     const { hideModal } = modalActionCreators;
     return (
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
@@ -67,8 +72,8 @@ TaskForm.propTypes = {
     hideModal: PropTypes.func,
   }),
   handleSubmit: PropTypes.func,
-  invalid:PropTypes.bool ,
-  submitting:PropTypes.bool ,
+  invalid: PropTypes.bool,
+  submitting: PropTypes.bool,
 }
 
 const mapStateToProps = (state, props) => {
@@ -80,6 +85,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     modalActionCreators: bindActionCreators(ModalActions, dispatch),
+    taskActionCreators: bindActionCreators(taskActions, dispatch),
   }
 }
 

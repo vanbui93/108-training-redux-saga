@@ -9,7 +9,7 @@ const validate = (values) => {
 
   if(!description){
     errors.description = 'Vui lòng nhập mô tả';
-  } else if(title.trim() && title.length < 10) {
+  } else if(title.trim() && title.length < 5) {
     errors.description = 'Mô tả phải từ 5 kí tự';
   }
   return errors;

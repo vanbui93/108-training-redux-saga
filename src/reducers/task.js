@@ -44,7 +44,7 @@ const taskReducer = (state = initialState, action) => {
       const {data} = action.payload;
       return {
         ...state,
-        listTask: state.listTask.concat([data]) //concat - nối vs data
+        listTask: [data].concat(state.listTask) //concat - nối listTask mới add vào vs data
       }
     }
     case taskConstants.ADD_TASK_FAILED: {
