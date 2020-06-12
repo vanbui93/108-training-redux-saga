@@ -40,6 +40,8 @@ const taskReducer = (state = initialState, action) => {
         ...state,
       }
     }
+
+    //sau khi add thành công thì trả về danh sách mới
     case taskConstants.ADD_TASK_SUCCESS: {
       const {data} = action.payload;
       return {

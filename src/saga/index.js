@@ -51,11 +51,6 @@ function* watchFetchListTaskAction() {
   }
 }
 
-function* watchCreateTaskAction() {
-  console.log('watchCreateTaskAction');
-
-}
-
 function* filterTaskSaga({ payload }) {
   yield delay(500);     //sau khi người dùng nhập đến kí tự cuối cùng, nữa giây sau thì mới thực hiện lấy kết quả
   const { keyword } = payload;
@@ -91,7 +86,6 @@ function* addTaskSaga({ payload }) {
 
 function* rootSaga() {
   yield fork(watchFetchListTaskAction);
-  yield fork(watchCreateTaskAction);
   yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);               //taskLatest lắng nghe action
   yield takeEvery(taskTypes.ADD_TASK, addTaskSaga);
 }

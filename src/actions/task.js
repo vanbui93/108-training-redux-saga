@@ -38,6 +38,7 @@ export const filterTaskSuccess = data => ({
   }
 })
 
+//Cần truyền dữ liệu lên title, description
 export const addTask = (title, description) => {
   return {
     type: taskConstants.ADD_TASK,
@@ -48,6 +49,7 @@ export const addTask = (title, description) => {
   }
 }
 
+//sau khi add thành công thì trả về data
 export const addTaskSuccess = data => {
   return {
     type: taskConstants.ADD_TASK_SUCCESS,
