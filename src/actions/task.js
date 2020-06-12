@@ -1,8 +1,11 @@
 import * as taskConstants from './../constants/task';
 
-export const fetchListTasks = () => {
+export const fetchListTasks = (params={}) => {
   return {
     type: taskConstants.FETCH_TASK,
+    payload: {
+      params,
+    }
   }
 }
 

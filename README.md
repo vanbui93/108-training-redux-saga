@@ -473,7 +473,11 @@ var { invalid,submitting } = this.props;
 
 <Button disabled={invalid || submitting}>Lưu lại</Button>
 ```
-
+## Nâng cấp chức năng tìm kiếm công việc
+Xem thêm https://www.npmjs.com/package/query-string
+```sh
+$ npm install --save query-string
+```
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.

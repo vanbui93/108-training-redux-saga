@@ -1,14 +1,13 @@
 //root saga là điểm bắt đầu, là 1 generator function
 //điều phối tất cả saga, khởi động tất cả các saga để chạy nền
 
-import { call, delay, fork, put, select, take, takeLatest, takeEvery } from 'redux-saga/effects';
-import { fetchListTaskFailed, fetchListTaskSuccess, filterTaskSuccess, addTaskFailed } from './../actions/task';
-import { hideLoading, showLoading } from './../actions/ui';
-import { getListTask, addTask } from './../apis/task';
-import { STATUS_CODE, STATUSES } from './../constants/index';
-import * as taskTypes from './../constants/task';
-import { addTaskSuccess } from './../actions/task';
+import { call, delay, fork, put, take, takeEvery, takeLatest } from 'redux-saga/effects';
 import { hideModal } from '../actions/modal';
+import { addTaskFailed, addTaskSuccess, fetchListTaskFailed, fetchListTasks, fetchListTaskSuccess } from './../actions/task';
+import { hideLoading, showLoading } from './../actions/ui';
+import { addTask, getListTask } from './../apis/task';
+import { STATUSES, STATUS_CODE } from './../constants/index';
+import * as taskTypes from './../constants/task';
 
 
 /**
@@ -54,14 +53,20 @@ function* watchFetchListTaskAction() {
 function* filterTaskSaga({ payload }) {
   yield delay(500);     //sau khi người dùng nhập đến kí tự cuối cùng, nữa giây sau thì mới thực hiện lấy kết quả
   const { keyword } = payload;
-  const list = yield select(state => state.task.listTask);
-  const filteredTask = list.filter(task =>
-    task.title
-      .trim()
-      .toLowerCase()
-      .includes(keyword.trim().toLowerCase()),
+  yield put(
+    fetchListTasks({
+      q: keyword,
+    })
   );
-  yield put(filterTaskSuccess(filteredTask));   //dispatch action filterTaskSuccess
+  // const { keyword } = payload;
+  // const list = yield select(state => state.task.listTask);
+  // const filteredTask = list.filter(task =>
+  //   task.title
+  //     .trim()
+  //     .toLowerCase()
+  //     .includes(keyword.trim().toLowerCase()),
+  // );
+  // yield put(filterTaskSuccess(filteredTask));   //dispatch action filterTaskSuccess
 }
 
 function* addTaskSaga({ payload }) {
