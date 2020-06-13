@@ -27,14 +27,18 @@ import * as taskTypes from './../constants/task';
 function* watchFetchListTaskAction() {
   while (true) {                                     //dùng vòng lặp vô tận để take khi nào cũng được lắng nghe
 
-    yield take(taskTypes.FETCH_TASK);               //take chạy khi action được dispatch
+   const action = yield take(taskTypes.FETCH_TASK);               //take chạy khi action được dispatch
     //---đoạn code từ đây trở đi bị dừng BLOCK---//
+    //SAU KHI FETCH_TASK XONG THÌ CHẠY TIẾP ĐOẠN CODE DƯỚI//
+    // console.log(action);
+    const {params} = action.payload;
 
     yield put(showLoading());
 
-    const resp = yield call(getListTask);           //call là 1 blocking, khi action được gọi thì mới thực thi và block cho đến khi call xong
+    const resp = yield call(getListTask, params);           //call là 1 blocking, khi action được gọi thì mới thực thi và block cho đến khi call xong
     //---BLOCK cho đến khi call xong--//
     console.log('resp:', resp);
+
     const { status, data } = resp;
 
     if (status === STATUS_CODE.SUSCESS) {
@@ -53,6 +57,8 @@ function* watchFetchListTaskAction() {
 function* filterTaskSaga({ payload }) {
   yield delay(500);     //sau khi người dùng nhập đến kí tự cuối cùng, nữa giây sau thì mới thực hiện lấy kết quả
   const { keyword } = payload;
+  console.log(keyword);
+
   yield put(
     fetchListTasks({
       q: keyword,
@@ -90,8 +96,9 @@ function* addTaskSaga({ payload }) {
 }
 
 function* rootSaga() {
-  yield fork(watchFetchListTaskAction);
-  yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);               //taskLatest lắng nghe action
+  yield fork(watchFetchListTaskAction);   //watchFetchListTaskAction luôn luôn thực thi, sau khi takeLatest thì thực thi lại
+  //sau khi action FILTER_TASK ĐÃ được thực thi thì thực hiện takeLatest
+  yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);    //taskLatest lắng nghe action
   yield takeEvery(taskTypes.ADD_TASK, addTaskSaga);
 }
 export default rootSaga;

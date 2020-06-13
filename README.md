@@ -474,9 +474,31 @@ var { invalid,submitting } = this.props;
 <Button disabled={invalid || submitting}>Lưu lại</Button>
 ```
 ## Nâng cấp chức năng tìm kiếm công việc
+sử dụng json-server https://github.com/typicode/json-server#full-text-search
+
 Xem thêm https://www.npmjs.com/package/query-string
 ```sh
 $ npm install --save query-string
+```
+
+```js
+function* filterTaskSaga({ payload }) {
+  yield delay(500);     //sau khi người dùng nhập đến kí tự cuối cùng, nữa giây sau thì mới thực hiện lấy kết quả
+  const { keyword } = payload;
+  console.log(keyword);
+
+  yield put(
+    fetchListTasks({
+      q: keyword,
+    })
+  );
+}
+
+function* rootSaga() {
+  yield fork(watchFetchListTaskAction);
+  //taskLatest chạy sau khi action [FILTER_TASK ĐÃ] chạy
+  yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);
+}
 ```
 
 Runs the app in the development mode.<br />
