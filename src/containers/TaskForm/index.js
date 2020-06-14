@@ -81,7 +81,8 @@ TaskForm.propTypes = {
 
 const mapStateToProps = (state, props) => {
   return {
-    taskEditing:state.task.taskEditing,
+    taskEditing: state.task.taskEditing,
+    initialValues: state.task.taskEditing,
   }
 }
 
