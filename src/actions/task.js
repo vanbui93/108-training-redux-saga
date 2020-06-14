@@ -71,6 +71,15 @@ export const addTaskFailed = error => {
   }
 }
 
+export const setTaskEditing = (task) => {
+  return {
+    type: taskConstants.SET_TASK_EDITING,
+    payload: {
+      task,
+    }
+  }
+}
+
 /*
 B1 fetchListTaskRequest()
 B2 Reset: state tasks => []

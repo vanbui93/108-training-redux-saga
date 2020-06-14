@@ -28,6 +28,17 @@ class TaskBoard extends Component {
   //   fetchListTaskRequest();
   // }
 
+  handEditTask = (task) => {
+    const { taskActionCreators,modalActionCreators } = this.props;
+    const { setTaskEditing } = taskActionCreators;
+    setTaskEditing(task);
+
+    const { showModal, changeModalTitle, changeModalContent } = modalActionCreators;
+    showModal();
+    changeModalTitle("Chỉnh sửa công việc");
+    changeModalContent(<TaskForm />);
+  }
+
   renderBoard = () => {
     const { listTask } = this.props;
     let xhtml = null;
@@ -43,6 +54,7 @@ class TaskBoard extends Component {
               tasks={taskFilter}
               status={status}
               index={index}
+              onClickEdit={this.handEditTask}
             />
           );
         })}
@@ -58,10 +70,13 @@ class TaskBoard extends Component {
   };
 
   openForm = () => {
-    const { modalActionCreators } = this.props;
+    const { modalActionCreators, taskActionCreators } = this.props;
     const { showModal, changeModalTitle, changeModalContent } = modalActionCreators;
+    const { setTaskEditing } = taskActionCreators;
+    setTaskEditing(null);
+
     showModal();
-    changeModalTitle("Thêm mới công việc");    
+    changeModalTitle("Thêm mới công việc");
     changeModalContent(<TaskForm />);
   };
 
@@ -115,6 +130,7 @@ TaskBoard.propTypes = {
   taskActions: PropTypes.shape({
     fetListTask: PropTypes.func,
     filterTask: PropTypes.func,
+    setTaskEditing: PropTypes.func,
   }),
   modalActions: PropTypes.shape({
     showModal: PropTypes.func,

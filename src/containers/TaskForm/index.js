@@ -21,7 +21,7 @@ class TaskForm extends Component {
   }
 
   render() {
-    var { classes, modalActionCreators, handleSubmit, invalid, submitting } = this.props;
+    var { classes, modalActionCreators, handleSubmit, invalid, submitting, taskEditing } = this.props;
     const { hideModal } = modalActionCreators;
     return (
       <form onSubmit={handleSubmit(this.handleSubmitForm)}>
@@ -35,6 +35,7 @@ class TaskForm extends Component {
               name="title"
               component={renderTextField}
               fullWidth
+              defaultValue={taskEditing ? taskEditing.title: ''}
             />
           </Grid>
           <Grid item md={12}>
@@ -48,6 +49,7 @@ class TaskForm extends Component {
               margin="dense"
               component={renderTextField}
               fullWidth
+              defaultValue={taskEditing ? taskEditing.description: ''}
             />
           </Grid>
           <Grid item md={12}>
@@ -74,11 +76,12 @@ TaskForm.propTypes = {
   handleSubmit: PropTypes.func,
   invalid: PropTypes.bool,
   submitting: PropTypes.bool,
+  taskEditing: PropTypes.object,
 }
 
 const mapStateToProps = (state, props) => {
   return {
-    open: state.modal.showModal,
+    taskEditing:state.task.taskEditing,
   }
 }
 
