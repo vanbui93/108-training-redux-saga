@@ -9,6 +9,7 @@ import * as taskActions from "../../actions/task";
 import renderTextField from './../../components/FormHelper/TextField/index';
 import styles from './styles';
 import validate from './validate';
+import renderSelectField from '../../components/FormHelper/SelectField';
 
 class TaskForm extends Component {
 
@@ -16,56 +17,79 @@ class TaskForm extends Component {
     const { taskActionCreators } = this.props;
     const { addTask } = taskActionCreators;
     const { title, description } = data;
-    addTask(title,description);
+    addTask(title, description);
     console.log('data', data);
   }
 
-  render() {
-    var { classes, modalActionCreators, handleSubmit, invalid, submitting, taskEditing } = this.props;
-    const { hideModal } = modalActionCreators;
-    return (
-      <form onSubmit={handleSubmit(this.handleSubmitForm)}>
-        <Grid container spacing={2}>
-          <Grid item md={12}>
-            <Field
-              id="title"
-              label="Tiêu đề"
-              className={classes.textField}
-              margin="dense"
-              name="title"
-              component={renderTextField}
-              fullWidth
-              defaultValue={taskEditing ? taskEditing.title: ''}
-            />
-          </Grid>
-          <Grid item md={12}>
-            <Field
-              id="description"
-              label="Mô tả"
-              name="description"
-              multiple
-              rowsMax="4"
-              className={classes.textField}
-              margin="dense"
-              component={renderTextField}
-              fullWidth
-              defaultValue={taskEditing ? taskEditing.description: ''}
-            />
-          </Grid>
-          <Grid item md={12}>
-            <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
-              <Box m={1}>
-                <Button variant="contained" color="primary" type="submit" disabled={invalid || submitting}>Lưu lại</Button>
-              </Box>
-              <Box m={1}>
-                <Button variant="contained" color="secondary" onClick={hideModal}>Hủy bỏ</Button>
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
-      </form>
-    )
+  renderStatusSelection = () => {
+    let xhtml = null;
+    const { classes,taskEditing } = this.props;
+    if (taskEditing && taskEditing.id) {
+      xhtml = (
+        <Field
+        id = "status"
+        label = "Trạng thái"
+        className = { classes.select }
+        margin = "dense"
+        name = "status"
+        component = { renderSelectField }
+        >
+          <option value={0}>Sẳn sàng</option>
+          <option value={1}>Đang xử lý</option>
+          <option value={2}>Hoàn thành</option>
+        </Field>
+      );
   }
+    return xhtml;
+  }
+
+render() {
+  var { classes, modalActionCreators, handleSubmit, invalid, submitting } = this.props;
+  const { hideModal } = modalActionCreators;
+  return (
+    <form onSubmit={handleSubmit(this.handleSubmitForm)}>
+      <Grid container spacing={2}>
+        <Grid item md={12}>
+          <Field
+            id="title"
+            label="Tiêu đề"
+            className={classes.textField}
+            margin="dense"
+            name="title"
+            component={renderTextField}
+            fullWidth
+          />
+        </Grid>
+        <Grid item md={12}>
+          <Field
+            id="description"
+            label="Mô tả"
+            name="description"
+            multiple
+            rowsMax="4"
+            className={classes.textField}
+            margin="dense"
+            component={renderTextField}
+            fullWidth
+          />
+        </Grid>
+        <Grid item md={12}>
+          {this.renderStatusSelection()}
+        </Grid>
+        <Grid item md={12}>
+          <Box display="flex" flexDirection="row-reverse" p={1} m={1}>
+            <Box m={1}>
+              <Button variant="contained" color="primary" type="submit" disabled={invalid || submitting}>Lưu lại</Button>
+            </Box>
+            <Box m={1}>
+              <Button variant="contained" color="secondary" onClick={hideModal}>Hủy bỏ</Button>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </form>
+  )
+}
 }
 
 TaskForm.propTypes = {
