@@ -15,18 +15,11 @@ import styles from "./styles";
 
 
 class TaskBoard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-    };
+  componentDidMount() {
+    const { taskActionCreators } = this.props;
+    const { fetchListTasks } = taskActionCreators;
+    fetchListTasks();
   }
-
-  // componentDidMount() {
-  //   const { taskActionCreators } = this.props;
-  //   const { fetchListTaskRequest } = taskActionCreators;
-  //   fetchListTaskRequest();
-  // }
 
   handEditTask = (task) => {
     const { taskActionCreators,modalActionCreators } = this.props;
@@ -63,12 +56,6 @@ class TaskBoard extends Component {
     return xhtml;
   };
 
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
   openForm = () => {
     const { modalActionCreators, taskActionCreators } = this.props;
     const { showModal, changeModalTitle, changeModalContent } = modalActionCreators;
@@ -78,13 +65,6 @@ class TaskBoard extends Component {
     showModal();
     changeModalTitle("Thêm mới công việc");
     changeModalContent(<TaskForm />);
-  };
-
-  renderForm = () => {
-    const { open } = this.state;
-    let xhtml = null;
-    xhtml = <TaskForm open={open} handleCloseForm={this.handleClose} />;
-    return xhtml;
   };
 
   loadData = () => {
@@ -119,7 +99,6 @@ class TaskBoard extends Component {
         </Button>
         {this.renderSearchBox()}
         {this.renderBoard()}
-        {/* {this.renderForm()} */}
       </div>
     );
   }
@@ -128,7 +107,7 @@ class TaskBoard extends Component {
 TaskBoard.propTypes = {
   classes: PropTypes.object,
   taskActions: PropTypes.shape({
-    fetListTask: PropTypes.func,
+    fetchListTasks: PropTypes.func,
     filterTask: PropTypes.func,
     setTaskEditing: PropTypes.func,
   }),

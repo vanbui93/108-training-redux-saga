@@ -44,7 +44,7 @@ const mapStateToProps = (state, props) => {
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch, props) => {
     return {
         modalActionCreators: bindActionCreators(ModalActions, dispatch),
     }
