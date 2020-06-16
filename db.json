@@ -1,34 +1,110 @@
 {
   "tasks": [
     {
-      "id": 1,
       "title": "Read book",
       "description": "Learning react js",
-      "status": 0
+      "status": "2",
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "Play Game",
+      "title": "play boy",
       "description": "play game lien quan mobile",
-      "status": 1
+      "status": 4,
+      "id": 2
     },
     {
-      "id": 3,
       "title": "Swiming",
       "description": "swiming with family",
-      "status": 2
+      "status": 2,
+      "id": 3
+    },
+    {
+      "title": "test update",
+      "description": "đây là mô tả qew",
+      "status": 1,
+      "id": 4
+    },
+    {
+      "title": "phá game",
+      "description": "play game lien quan mobile",
+      "status": 0,
+      "id": 5
+    },
+    {
+      "title": "Read book",
+      "description": "Learning react js",
+      "status": 1,
+      "id": 6
+    },
+    {
+      "title": "Play Game",
+      "description": "play game lien quan mobile",
+      "status": 2,
+      "id": 7
+    },
+    {
+      "title": "Play Game",
+      "description": "play game lien quan mobile",
+      "status": 2,
+      "id": 8
+    },
+    {
+      "title": "tro choi dien tu",
+      "description": "danh cho tre em",
+      "status": 2,
+      "id": 9
     },
     {
       "title": "test update",
       "description": "đây là mô tả",
+      "status": 1,
+      "id": 10
+    },
+    {
+      "title": "đi mua trái cây ngon",
+      "description": "mua về ăn giảm cân",
       "status": 0,
-      "id": 4
+      "id": 11
     },
     {
       "title": "Play Game",
       "description": "play game lien quan mobile",
-      "status": 0,
-      "id": 5
+      "status": 2,
+      "id": 12
+    },
+    {
+      "title": "Read book",
+      "description": "Learning react js",
+      "status": 2,
+      "id": 13
+    },
+    {
+      "title": "Đi bơi",
+      "description": "Quận 6, hcm",
+      "status": 2,
+      "id": 14
+    },
+    {
+      "title": "Play tennis",
+      "description": "ds",
+      "status": 2,
+      "id": 15
+    },
+    {
+      "title": "Học tiếng anh",
+      "status": 2,
+      "id": 16
+    },
+    {
+      "title": "test update",
+      "description": "đây là mô tả",
+      "status": 2,
+      "id": 17
+    },
+    {
+      "title": "học bơi",
+      "status": 2,
+      "id": 18
     }
   ]
 }

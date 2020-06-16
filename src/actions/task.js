@@ -1,6 +1,7 @@
 import * as taskConstants from './../constants/task';
+import { STATUSES } from './../constants/index';
 
-export const fetchListTasks = (params={}) => {
+export const fetchListTasks = (params = {}) => {
   return {
     type: taskConstants.FETCH_TASK,
     payload: {
@@ -80,12 +81,13 @@ export const setTaskEditing = (task) => {
   }
 }
 
-export const updateTask = (title, description) => {
+export const updateTask = (title, description, status = STATUSES[0].value) => {
   return {
     type: taskConstants.UPDATE_TASK,
     payload: {
       title,
       description,
+      status,
     }
   }
 }

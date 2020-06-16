@@ -17,17 +17,17 @@ renderFromHelper.propTypes = {
   error: PropTypes.bool
 };
 
-const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
-  <FormControl error={touched && error}>
+const renderSelectField = ({ classes, input, label, meta: { touched, error }, children, ...custom }) => (
+  <FormControl className={classes.formControl} error={touched && error}>
     <InputLabel htmlFor="age-native-simple">{label}</InputLabel>
     <Select
-      native
       {...input}
       {...custom}
       inputProps={{
         name: 'age',
         id: 'age-native-simple'
       }}
+      value={input.value}
     >
       {children}
     </Select>
@@ -40,7 +40,7 @@ renderSelectField.propTypes = {
   label: PropTypes.string,
   meta: PropTypes.object,
   children: PropTypes.array,
-  classes: PropTypes.object
+  classes: PropTypes.object,
 };
 
 export default withStyles(styles)(renderSelectField);

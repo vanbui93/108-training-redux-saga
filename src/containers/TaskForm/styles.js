@@ -1,3 +1,11 @@
-const style = (theme) => ({
+const styles = () => ({
+  textField: {
+    width: '100%',
+  },
+  select: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
 });
-export default style;
+
+export default styles;

@@ -28,6 +28,10 @@ class axiosService {
     return this.instance.post(url, body)
   }
 
+  put(url,body){
+    return this.instance.put(url, body)
+  }
+
 }
 
 export default new axiosService();

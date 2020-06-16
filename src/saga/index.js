@@ -1,14 +1,17 @@
 //root saga là điểm bắt đầu, là 1 generator function
 //điều phối tất cả saga, khởi động tất cả các saga để chạy nền
 
-import { call, delay, fork, put, take, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, delay, fork, put, select, take, takeEvery, takeLatest } from 'redux-saga/effects';
 import { hideModal } from '../actions/modal';
-import { addTaskFailed, addTaskSuccess, fetchListTaskFailed, fetchListTasks, fetchListTaskSuccess } from './../actions/task';
+import {
+  addTaskFailed, addTaskSuccess,
+  fetchListTaskFailed, fetchListTasks, fetchListTaskSuccess,
+  updateTaskFailed, updateTaskSuccess
+} from './../actions/task';
 import { hideLoading, showLoading } from './../actions/ui';
-import { addTask, getListTask } from './../apis/task';
+import { addTask, getListTask, updateTask } from './../apis/task';
 import { STATUSES, STATUS_CODE } from './../constants/index';
 import * as taskTypes from './../constants/task';
-
 
 /**
  * VÍ DỤ VỀ REDUX-SAGA, miêu tả rõ quy trình của 1 công việc
@@ -27,11 +30,11 @@ import * as taskTypes from './../constants/task';
 function* watchFetchListTaskAction() {
   while (true) {                                     //dùng vòng lặp vô tận để take khi nào cũng được lắng nghe
 
-   const action = yield take(taskTypes.FETCH_TASK);               //take chạy khi action được dispatch
+    const action = yield take(taskTypes.FETCH_TASK);               //take chạy khi action được dispatch
     //---đoạn code từ đây trở đi bị dừng BLOCK---//
     //SAU KHI FETCH_TASK XONG THÌ CHẠY TIẾP ĐOẠN CODE DƯỚI//
     // console.log(action);
-    const {params} = action.payload;
+    const { params } = action.payload;
 
     yield put(showLoading());
 
@@ -95,10 +98,29 @@ function* addTaskSaga({ payload }) {
   yield put(hideLoading());
 }
 
+function* updateTaskSaga({ payload }) {
+  const { title, description, status } = payload;
+  const taskEditing = yield select(state => state.task.taskEditing);
+  yield put(showLoading());
+  const resp = yield call(updateTask, { title, description, status }, taskEditing.id); //updateTask = (data, taskId) => data = { title, description, status }
+
+  const { data, status: statusCode } = resp;
+
+  if (statusCode === STATUS_CODE.SUSCESS) {
+    yield put(updateTaskSuccess(data));
+    yield put(hideModal());
+  } else {
+    yield put(updateTaskFailed(data));
+  }
+  yield delay(1000);
+  yield put(hideLoading());
+}
+
 function* rootSaga() {
   yield fork(watchFetchListTaskAction);   //watchFetchListTaskAction luôn luôn thực thi, sau khi takeLatest thì thực thi lại
   //sau khi action FILTER_TASK ĐÃ được thực thi thì thực hiện takeLatest
   yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);    //taskLatest lắng nghe action
   yield takeEvery(taskTypes.ADD_TASK, addTaskSaga);
+  yield takeLatest(taskTypes.UPDATE_TASK, updateTaskSaga);
 }
 export default rootSaga;
