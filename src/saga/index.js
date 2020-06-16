@@ -119,13 +119,15 @@ function* updateTaskSaga({ payload }) {
 
 function* deleteTaskSaga({ payload }) {
   const { id } = payload;
+  console.log(id);
+
   yield put(showLoading());
   const resp = yield call(deleteTask, id); //updateTask = (data, taskId) => data = { title, description, status }
 
   const { data, status: statusCode } = resp;
 
   if (statusCode === STATUS_CODE.SUSCESS) {
-    yield put(deleteTaskSuccess(data));
+    yield put(deleteTaskSuccess(id));
     yield put(hideModal());
   } else {
     yield put(deleteTaskFailed(data));

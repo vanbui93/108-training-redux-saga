@@ -106,11 +106,10 @@ const taskReducer = (state = initialState, action) => {
       }
     }
     case taskConstants.DELETE_TASK_SUCCESS: {
-      const { data } = action.payload;
-
+      const { data: taskId } = action.payload; //task id
       return {
         ...state,
-        listTast: state.listTask.filter((item) => (item.id = data.id)),
+        listTask: state.listTask.filter((item) => (item.id !== taskId)),
       }
     }
     case taskConstants.DELETE_TASK_FAILED: {
@@ -118,7 +117,6 @@ const taskReducer = (state = initialState, action) => {
       toastError(error);
       return {
         ...state,
-
       }
     }
 
