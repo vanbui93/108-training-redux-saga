@@ -91,6 +91,37 @@ const taskReducer = (state = initialState, action) => {
         ...state,
       }
     }
+    case taskConstants.UPDATE_TASK_FAILED: {
+      const { error } = action.payload;
+      toastError(error);
+      return {
+        ...state,
+
+      }
+    }
+
+    case taskConstants.DELETE_TASK: {
+      return {
+        ...state,
+      }
+    }
+    case taskConstants.DELETE_TASK_SUCCESS: {
+      const { data } = action.payload;
+
+      return {
+        ...state,
+        listTast: state.listTask.filter((item) => (item.id = data.id)),
+      }
+    }
+    case taskConstants.DELETE_TASK_FAILED: {
+      const { error } = action.payload;
+      toastError(error);
+      return {
+        ...state,
+
+      }
+    }
+
     default:
       return state
   }

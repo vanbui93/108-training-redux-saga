@@ -110,6 +110,33 @@ export const updateTaskFailed = error => {
   }
 }
 
+export const deleteTask = (id) => {
+  return {
+    type: taskConstants.DELETE_TASK,
+    payload: {
+      id
+    },
+  }
+}
+
+export const deleteTaskSuccess = data => {
+  return {
+    type: taskConstants.DELETE_TASK_SUCCESS,
+    payload: {
+      data
+    }
+  }
+}
+
+export const deleteTaskFailed = error => {
+  return {
+    type: taskConstants.DELETE_TASK_FAILED,
+    payload: {
+      error,
+    }
+  }
+}
+
 /*
 B1 fetchListTaskRequest()
 B2 Reset: state tasks => []

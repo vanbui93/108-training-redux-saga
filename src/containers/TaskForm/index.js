@@ -16,8 +16,6 @@ class TaskForm extends Component {
 
   handleSubmitForm = (data) => {
     const { taskActionCreators, taskEditing } = this.props;
-    console.log(taskEditing);
-
     const { addTask, updateTask } = taskActionCreators;
     const { title, description, status } = data;
 

@@ -22,7 +22,7 @@ class TaskBoard extends Component {
   }
 
   handEditTask = (task) => {
-    const { taskActionCreators,modalActionCreators } = this.props;
+    const { taskActionCreators, modalActionCreators } = this.props;
     const { setTaskEditing } = taskActionCreators;
     setTaskEditing(task);
 
@@ -33,12 +33,14 @@ class TaskBoard extends Component {
   }
 
   handleDeleteTask = (task) => {
-    console.log(task);
-
+    const { id } = task;
+    const { taskActionCreators } = this.props;
+    const { deleteTask } = taskActionCreators;
+    deleteTask(id);
   }
 
   showModalDeleteTask = (task) => {
-    const { taskActionCreators,modalActionCreators,classes } = this.props;
+    const { taskActionCreators, modalActionCreators, classes } = this.props;
 
     const {
       showModal,
@@ -145,6 +147,7 @@ TaskBoard.propTypes = {
     fetchListTasks: PropTypes.func,
     filterTask: PropTypes.func,
     setTaskEditing: PropTypes.func,
+    deleteTask: PropTypes.func,
   }),
   modalActions: PropTypes.shape({
     showModal: PropTypes.func,
