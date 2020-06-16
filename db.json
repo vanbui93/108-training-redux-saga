@@ -33,14 +33,14 @@
     {
       "title": "Read book",
       "description": "Learning react js",
-      "status": 1,
+      "status": 2,
       "id": 6
     },
     {
-      "title": "đi mua trái cây ngon",
-      "description": "mua về ăn giảm cân",
-      "status": 0,
-      "id": 11
+      "title": "Học react",
+      "description": "đây là mô tả",
+      "status": 1,
+      "id": 12
     }
   ]
 }
