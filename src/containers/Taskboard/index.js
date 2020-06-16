@@ -1,4 +1,4 @@
-import { Button, withStyles } from "@material-ui/core";
+import { Button, withStyles, Box } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import { Add } from "@material-ui/icons";
 import PropTypes from "prop-types";
@@ -32,6 +32,40 @@ class TaskBoard extends Component {
     changeModalContent(<TaskForm />);
   }
 
+  handleDeleteTask = (task) => {
+    console.log(task);
+
+  }
+
+  showModalDeleteTask = (task) => {
+    const { taskActionCreators,modalActionCreators,classes } = this.props;
+
+    const {
+      showModal,
+      hideModal,
+      changeModalTitle,
+      changeModalContent
+    } = modalActionCreators;
+    showModal();
+    changeModalTitle("Xóa công việc");
+    changeModalContent(
+      <div className={classes.modalDelete}>
+        <div className={classes.modalConfirmText}>
+          Bạn chắc chắn muốn xóa <span className={classes.modalConfirmTextBold}>{task.title}</span> ?
+        </div>
+        <Box display="flex" flexDirection="row-reverse" mt={2}>
+          <Box ml={1}>
+            <Button variant="contained" onClick={hideModal}>Hủy bỏ</Button>
+          </Box>
+          <Box>
+            <Button variant="contained" color="primary" onClick={() => this.handleDeleteTask(task)}>Đồng ý</Button>
+          </Box>
+        </Box>
+      </div>
+    );
+  }
+
+
   renderBoard = () => {
     const { listTask } = this.props;
     let xhtml = null;
@@ -48,6 +82,7 @@ class TaskBoard extends Component {
               status={status}
               index={index}
               onClickEdit={this.handEditTask}
+              onClickDetele={this.showModalDeleteTask}
             />
           );
         })}

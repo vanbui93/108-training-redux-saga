@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 class TaskList extends Component {
   render() {
-    var { classes,tasks,status,onClickEdit } = this.props;
+    var { classes,tasks,status,onClickEdit, onClickDetele } = this.props;
     return (
       <Grid item md={4} xs={12} key={status.value}>
         <Box mb={2} mt={2}>
@@ -23,6 +23,7 @@ class TaskList extends Component {
                   status={status}
                   key={task.id}
                   onClickEdit={() => onClickEdit(task)}
+                  onClickDetele={() => onClickDetele(task)}
                 />
               )
             })
@@ -39,6 +40,7 @@ TaskList.propTypes = {
   tasks: PropTypes.array,
   status: PropTypes.object,
   onClickEdit: PropTypes.func,
+  onClickDetele: PropTypes.func,
 }
 
 export default withStyles(styles)(TaskList)
