@@ -15,6 +15,7 @@ import { STATUSES, STATUS_CODE } from './../constants/index';
 import * as taskTypes from './../constants/task';
 import { toastSuccess } from '../helpers/toastHelper';
 
+
 /**
  * VÍ DỤ VỀ REDUX-SAGA, miêu tả rõ quy trình của 1 công việc
  * B1: Thực thi action fetch task
@@ -138,7 +139,9 @@ function* deleteTaskSaga({ payload }) {
 }
 
 function* rootSaga() {
-  yield fork(watchFetchListTaskAction);   //watchFetchListTaskAction luôn luôn thực thi, sau khi takeLatest thì thực thi lại
+
+  //watchFetchListTaskAction luôn luôn thực thi, sau khi takeLatest thì thực thi lại
+  yield fork(watchFetchListTaskAction);
   //sau khi action FILTER_TASK ĐÃ được thực thi thì thực hiện takeLatest
   yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);    //taskLatest lắng nghe action
   yield takeEvery(taskTypes.ADD_TASK, addTaskSaga);

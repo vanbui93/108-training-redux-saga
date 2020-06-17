@@ -1,4 +1,29 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Table of Contents
+- [Sử dụng MATERIAL-UI](#sử-dụng-material-ui)
+- [install Roboto Font](#install-roboto-font)
+- [Font Icons](#font-icons)
+- [Install Eslint](#install-eslint)
+- [Install Prettier extension](#install-prettier-extension-visual-studio-code)
+- [Run json server](#run-json-server)
+- [Tích hợp Redux](#tích-hợp-redux)
+- [Install Axios](#install-axios)
+- [Use BindActionCreators](#use-bindactioncreators)
+- [Install Toastify](#install-toastify)
+- [Install Redux-Saga](#install-redux-saga)
+- [### So sánh redux-thunk và redux-saga](#So-sánh-redux-thunk-và-redux-saga)
+- [Sử dụng Redux-saga Fork](#sử-dụng-redux-saga-fork)
+- [Sử dụng Redux-saga Take](#sử-dụng-redux-saga-take)
+- [Sử dụng Redux-saga Call](#sử-dụng-redux-saga-call)
+- [Sử dụng Redux-saga Put](#sử-dụng-redux-saga-put)
+- [Sử dụng Redux-saga Delay](#sử-dụng-redux-saga-delay)
+- [Sử dụng Redux-saga TakeLatest](#sử-dụng-redux-saga-takelatest)
+- [Sử dụng Redux-saga Select](#sử-dụng-redux-saga-select)
+- [Sử dụng Redux-saga TakeEvery](#sử-dụng-redux-saga-takeevery)
+- [Sử dụng Redux Form](#sử-dụng-redux-form)
+- [Redux-form: Validation - Ràng buộc dữ liệu](#redux-form-validation---ràng-buộc-dữ-liệu)
+
 ## Sử dụng MATERIAL-UI
 Dùng https://material-ui.com/ 
 để build giao diện nhanh hơn
@@ -25,14 +50,6 @@ npm install @material-ui/core
 
 ```sh 
 npm install @material-ui/icons
-```
-
-## Available Scripts
-
-In the project directory, you can run:
-
-```sh
-npm start
 ```
 
 ## Install Eslint
@@ -205,6 +222,42 @@ cài đặt trong file `redux/configureStore.js`
 ```js
 sagaMiddleware.run(mySaga)
 ```
+### So sánh redux-thunk và redux-saga
+
+- **Redux-thunk**: Component gọi action => redux-thunk thực hiện action => dispatch => trả về Promise<br>
+(view component => `action` => `dispatch(redux-thunk())` => `Promise` => `reducer`)
+- **Redux-saga**Component gọi action => redux-saga lắng nghe action => genarator function (saga) trả về Promise<br>
+(view component => `action` =>  `yield takeLatest(taskTypes.ACTION_TASK, actionTaskSaga)` =>  `dispatch` => `Promise` => `reducer`)<br>
+
+Mỗi 1 event sẽ có 3 action: <br>
+- DELETE_TASK
+- DELETE_TASK_SUCCESS
+- DELETE_TASK_FAILED<br>
+action đầu tiên (DELETE_TASK) báo cho reducer biết sắp có 1 API request<br>
+Nếu thành công trả về **DELETE_TASK_SUCCESS**<br>
+Nếu thất bại trả về **DELETE_TASK_FAILED**<br><br>
+
+Dưới đây là ví dụ về redux-saga, khi thực hiện lắng nghe 1 action **DELETE_TASK**
+```js
+import {
+  DELETE_TASK,
+  DELETE_TASK_SUCCESS,
+  DELETE_TASK_FAILED,
+} from './actions/consts';
+import { getDataFromAPI } from './api';
+
+function* deleteTaskSaga({ payload }) {
+  try {
+    const data = yield call(getDataFromAPI);
+    yield put({ type: DELETE_TASK_SUCCESS, payload: id });
+  } catch (e) {
+    yield put({ type: DELETE_TASK_FAILED, payload: e.message });
+  }
+}
+function* rootSaga() {
+  yield takeLatest(taskTypes.DELETE_TASK, deleteTaskSaga)
+}
+```
 
 ## Side-Effect (Sử dụng redux-saga)
 
@@ -264,7 +317,7 @@ console.log(iterator.next());
 console.log(iterator.next());
 ```
 
-## Sử dụng Redux-saga Fork
+### Sử dụng Redux-saga Fork
 - **Fork** giống như 1 bộ theo dõi, người theo dõi action, là 1 **generator function**
 - Dùng để rẽ nhánh như if-else, switch-case
 - Fork thuộc redux-saga/effects
@@ -285,7 +338,7 @@ function* rootSaga() {
 }
 ```
 
-## Sử dụng Redux-saga Take
+### Sử dụng Redux-saga Take
 - **Take** chỉ chạy khi action được dispatch
 - Dùng để phản hồi các action khi action được dispatch
 - Fork thuộc redux-saga/effects
@@ -296,7 +349,7 @@ function* rootSaga() {
 yield take(taskTypes.FETCH_TASK); 
 ```
 
-## Sử dụng Redux-saga Call
+### Sử dụng Redux-saga Call
 - Thường sử dụng để **request API, call API**
 - Là blocking
 - Giống thực thi 1 function. Trả về Promise và sẽ tạm dừng saga cho đến khi promise được resolved
@@ -305,14 +358,14 @@ yield take(taskTypes.FETCH_TASK);
 const resp = yield call(getListTask);    //getListTask gọi api  ./../apis/task
 ```
 
-## Sử dụng Redux-saga Put
+### Sử dụng Redux-saga Put
 - Dùng để **dispatch action**
 - Là non-blocking (có thể put cùng lúc nhiều action)
 
 ```js
 yield put(showLoading());   //dispatch action SHOW_LOADING
 ```
-## Sử dụng Redux-saga Delay
+### Sử dụng Redux-saga Delay
 - Là blocking
 - Để chặn thực thi trong 1 khoảng thời gian miliseconds
 
@@ -324,7 +377,7 @@ function* watchFetchListTaskAction() {
 }
 ```
 
-## Sử dụng Redux-saga TakeLatest
+### Sử dụng Redux-saga TakeLatest
 - Thay thế cho fork: **Là phiên bản của fork** đã được bổ sung
 - Hủy bỏ quy trình cũ khi có một quy trình mới bắt đầu.
 - Nếu thực hiện một loạt các action, takeLatest chỉ thực thi và lấy kết quả của action cuối cùng.
@@ -349,21 +402,21 @@ function* rootSaga() {
 }
 ```
 
-## Sử dụng Redux-saga Select
+### Sử dụng Redux-saga Select
 - **Lấy data** từ store tại saga
 
 ```js
 const list = yield select(state => state.task.listTask);
 ```
 
-## Sử dụng Redux-saga TakeEvery
+### Sử dụng Redux-saga TakeEvery
 - TakeEvery sử dụng giống TakeLatest, nhưng TakeEvery chạy ngay lập tực nếu được kích hoạt
 - không cần tính số lần chạy
 - không  biết là action trước đó đã chạy xong chưa
 ```js
 yield takeEvery(taskTypes.FILTER_TASK, filterTaskSaga);
 ```
-## Sử dụng Redux Form
+### Sử dụng Redux Form
 Xem chi tiết trên trang chủ https://redux-form.com/8.3.0/ <br>
 cài đặt
 ```sh
@@ -410,7 +463,7 @@ export default compose {
 
 }
 ```
-## Redux-form: Validation - Ràng buộc dữ liệu
+### Redux-form: Validation - Ràng buộc dữ liệu
 Xem thêm https://redux-form.com/8.2.2/examples/syncvalidation/ <br>
 
 Synchronous Validation Example - Thực hiện ở phía client
@@ -503,3 +556,11 @@ function* rootSaga() {
 
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+
+## Available Scripts
+
+In the project directory, you can run:
+
+```sh
+npm start
+```
