@@ -15,14 +15,8 @@
     {
       "title": "Swiming",
       "description": "swiming with family",
-      "status": 2,
-      "id": 3
-    },
-    {
-      "title": "test update",
-      "description": "đây là mô tả qew",
       "status": 1,
-      "id": 4
+      "id": 3
     },
     {
       "title": "phá game",
@@ -38,8 +32,8 @@
     },
     {
       "title": "Học react",
-      "description": "đây là mô tả",
-      "status": 1,
+      "description": "su khac nhau giua redux-thunk và redux-saga  - Component goi redux-thunk => redux-thunk thuc hien action => action => reponsive (view component => action => dispatch(redux-thunk()) => Promise => responsive) - Component goi action => redux-saga lang nghe action => genarator function (saga) tra ve Promise (view component =>action =>  yield takeLatest(taskTypes.ACTION_TASK, actionTaskSaga) =>  dispatch => Promise => responsive)  function* rootSaga() {   yield takeLatest(taskTypes.DELETE_TASK, deleteTaskSaga) }  moi 1 event se co 3 action DELETE_TASK DELETE_TASK_SUCCESS DELETE_TASK_FAILED action dau tien bao cho reducer biet sap co 1 API request DELETE_TASK neu thanh cong tra ve DELETE_TASK_SUCCESS neu that bai tra ve DELETE_TASK_FAILED",
+      "status": 2,
       "id": 12
     }
   ]

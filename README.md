@@ -24,6 +24,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Sử dụng Redux Form](#sử-dụng-redux-form)
 - [Redux-form: Validation - Ràng buộc dữ liệu](#redux-form-validation---ràng-buộc-dữ-liệu)
 
+## Install reactjs
+
+- Fix lỗi warning 
+```sh
+npx react-codemod rename-unsafe-lifecycles
+```
+
 ## Sử dụng MATERIAL-UI
 Dùng https://material-ui.com/ 
 để build giao diện nhanh hơn
