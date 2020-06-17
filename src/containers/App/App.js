@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
-import Taskboard from '../Taskboard';
 import theme from './../../commons/Theme';
 import { Provider } from 'react-redux';
 import configureStore from './../../redux/configureStore';
@@ -8,21 +7,39 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GloballLoading from './../../components/GloballLoading/index';
 import Modal from '../../components/Modal';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import { ADMIN_ROUTES } from './../../constants/index';
+import AdminLayoutRoute from './../../commons/Layout/AdminLayoutRoute/index';
 
 const store = configureStore();
 
 //Container connect tới reducer
-export default class App extends Component {
+class App extends Component {
+  renderAdminRoute = () => {
+    let xhtml = null;
+    xhtml = ADMIN_ROUTES.map((route, index) => {
+      return (
+        <AdminLayoutRoute key={index} route={route} />
+      )
+    })
+    return xhtml;
+  }
   render() {
     return (
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <ToastContainer/>
-          <GloballLoading/>
-          <Modal/>
-          <Taskboard />
-        </ThemeProvider>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <ToastContainer />
+            <GloballLoading />
+            <Modal />
+            <Switch>
+              {this.renderAdminRoute()}
+            </Switch>
+          </ThemeProvider>
+        </BrowserRouter>
       </Provider>
     );
   }
-}
+};
+
+export default App;
