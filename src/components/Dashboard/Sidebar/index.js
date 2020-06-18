@@ -6,7 +6,7 @@ class Siderbar extends Component {
   render() {
     return (
       <div>
-
+        Siderbar
       </div>
     );
   }

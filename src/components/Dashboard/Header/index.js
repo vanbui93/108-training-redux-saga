@@ -6,7 +6,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-
+        Đây là Header
       </div>
     );
   }
