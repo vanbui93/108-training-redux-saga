@@ -6,20 +6,17 @@ import { PropTypes } from 'prop-types';
 class AdminLayoutRoute extends Component {
   render() {
     const { route } = this.props;
-    const { component: yourComponent, name, ...remainProps } = route; //remainProps là các thuộc tính còn lại trong ADMIN_ROUTES
+    const { component: YourComponent, name, ...remainProps } = route; //remainProps là các thuộc tính còn lại trong ADMIN_ROUTES
     return (
-      <Route {...remainProps} render={(routeProps) => {
-        return (
-          <Dashboard>
-            <yourComponent {...routeProps}/>DashBoard
-          </Dashboard>
-        )
-      }} />
+      //render là props của route
+      //render là kết xuất component inline nội tuyến: render={() => <div>Home</div>}
+      //mà ko phải truyền vào dạng:  component={Dashboard}
+      <Route {...remainProps} render={(routeProps) => <Dashboard><YourComponent {...routeProps} /></Dashboard> }/>
     )
   }
 }
 
-AdminLayoutRoute.propTypes= {
+AdminLayoutRoute.propTypes = {
   route: PropTypes.object,
 };
 

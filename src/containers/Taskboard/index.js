@@ -40,7 +40,7 @@ class TaskBoard extends Component {
   }
 
   showModalDeleteTask = (task) => {
-    const { taskActionCreators, modalActionCreators, classes } = this.props;
+    const { modalActionCreators, classes } = this.props;
 
     const {
       showModal,

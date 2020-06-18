@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from './styles';
 
-class Content extends Component {
+class Header extends Component {
   render() {
     return (
       <div>
@@ -13,4 +13,4 @@ class Content extends Component {
 }
 
 
-export default withStyles(styles)(Content);
+export default withStyles(styles)(Header);
