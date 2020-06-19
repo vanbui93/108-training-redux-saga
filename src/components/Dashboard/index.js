@@ -13,9 +13,11 @@ class Dashboard extends Component {
     const { children, classes, name } = this.props;
     return (
       <div className={classes.dashboard}>
-        <Header name={name}/>
-        <Sidebar/>
-        {children}
+        <Header name={name} />
+        <div className={classes.wrapper}>
+          <Sidebar />
+          <div className={classes.wrapperContent}>{children}</div>
+        </div>
       </div>
     );
   }
