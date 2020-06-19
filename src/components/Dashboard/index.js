@@ -9,10 +9,11 @@ class Dashboard extends Component {
   render() {
     //children nhận tất cả props của route
     //(ở đây lấy props từ App(route) -> AdminLayoutRoute (routeProps)
-    const { children, classes } = this.props;
+    //props name lấy từ AdminLayoutRoute(remainProps), sau đó truyền vào cho header
+    const { children, classes, name } = this.props;
     return (
       <div className={classes.dashboard}>
-        <Header/>
+        <Header name={name}/>
         <Sidebar/>
         {children}
       </div>
@@ -23,6 +24,7 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   children: PropTypes.object,
   classes: PropTypes.object,
+  name: PropTypes.string,
 };
 
 export default withStyles(styles)(Dashboard);

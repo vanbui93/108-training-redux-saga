@@ -58,6 +58,7 @@ class Header extends Component {
   };
 
   render() {
+    //name lấy từ props tromg Dashboard
     const { classes, name } = this.props;
     return (
       <div className={classes.grow}>

@@ -10,14 +10,23 @@ class AdminLayoutRoute extends Component {
       //render là props của route
       //render là kết xuất component inline nội tuyến: render={() => <div>Home</div>}
       //mà ko phải truyền vào dạng:  component={Dashboard}
-      <Route {...remainProps} render={(routeProps) => <Dashboard><YourComponent {...routeProps} /></Dashboard>} />
+
+      //remainProps bao gồm tất cả các props trừ component
+      <Route {...remainProps} render={(routeProps) => {
+        return (
+          <Dashboard {...remainProps}>
+            <YourComponent {...routeProps} />
+          </Dashboard>
+        )
+      }}
+      />
     )
   }
 }
 
 AdminLayoutRoute.propTypes = {
   path: PropTypes.string,
-  component: PropTypes.oneOfType([PropTypes.object,PropTypes.func]),
+  component: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   exact: PropTypes.bool,
   name: PropTypes.string,
 };
