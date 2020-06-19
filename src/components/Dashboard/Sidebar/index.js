@@ -8,18 +8,12 @@ import ListItem from '@material-ui/core/ListItem';
 import { ADMIN_ROUTES } from './../../../constants/index';
 import { NavLink } from 'react-router-dom';
 
-class Siderbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: true,
-    }
-  }
-
+class Sidebar extends Component {
   toggleDrawer = (value) => {
-    this.setState({
-      open: value
-    })
+    const { onToggleSidebar } = this.props;
+    if (onToggleSidebar) {
+      onToggleSidebar(value);
+    }
   };
 
   renderList = () => {
@@ -50,10 +44,9 @@ class Siderbar extends Component {
   }
 
   render() {
-    const { open } = this.state;
-    const { classes } = this.props;
+    const { classes,openSideBar } = this.props;
     return (
-      <Drawer open={open} onClose={() => this.toggleDrawer(false)}
+      <Drawer open={openSideBar} onClose={() => this.toggleDrawer(false)}
         variant="persistent"
         classes={{
           paper: classes.drawerPaper,
@@ -65,9 +58,11 @@ class Siderbar extends Component {
   }
 }
 
-Siderbar.propTypes = {
+Sidebar.propTypes = {
   classes: PropTypes.object,
   open: PropTypes.bool,
+  openSideBar: PropTypes.bool,
+  onToggleSidebar: PropTypes.func,
 }
 
-export default withStyles(styles)(Siderbar);
+export default withStyles(styles)(Sidebar);

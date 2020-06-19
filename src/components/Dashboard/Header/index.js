@@ -51,9 +51,9 @@ class Header extends Component {
   };
 
   handleToggleSidebar = () => {
-    const { showSidebar, onToggleSidebar } = this.props;
+    const { openSideBar, onToggleSidebar } = this.props;
     if (onToggleSidebar) {
-      onToggleSidebar(!showSidebar);
+      onToggleSidebar(!openSideBar);
     }
   };
 
@@ -100,7 +100,7 @@ class Header extends Component {
 Header.propTypes = {
   classes: PropTypes.object,
   name: PropTypes.string,
-  showSidebar: PropTypes.bool,
+  openSideBar: PropTypes.bool,
   onToggleSidebar: PropTypes.func,
 };
 

@@ -4,18 +4,39 @@ import styles from './styles';
 import { PropTypes } from 'prop-types';
 import Header from './Header/index';
 import Sidebar from './Sidebar/index';
+import { connect } from 'react-redux';
+import { compose, bindActionCreators } from 'redux';
+import * as uiActions from './../../actions/ui';
 
 class Dashboard extends Component {
+
+  handleToggleSidebar = (value) => {
+    const { uiActionCreators } = this.props;
+    const { showSidebar, hideSidebar } = uiActionCreators;
+    console.log(uiActionCreators);
+    if (value === true) {
+      showSidebar();
+    } else {
+      hideSidebar();
+    }
+  }
+
   render() {
     //children nhận tất cả props của route
     //(ở đây lấy props từ App(route) -> AdminLayoutRoute (routeProps)
     //props name lấy từ AdminLayoutRoute(remainProps), sau đó truyền vào cho header
-    const { children, classes, name } = this.props;
+    const { children, classes, name, openSideBar } = this.props;
+    console.log(openSideBar);
+
     return (
       <div className={classes.dashboard}>
-        <Header name={name} />
+        <Header
+          name={name}
+          openSideBar={openSideBar}
+          onToggleSidebar={this.handleToggleSidebar}
+        />
         <div className={classes.wrapper}>
-          <Sidebar />
+          <Sidebar openSideBar={openSideBar} onToggleSidebar={this.handleToggleSidebar} />
           <div className={classes.wrapperContent}>{children}</div>
         </div>
       </div>
@@ -27,6 +48,25 @@ Dashboard.propTypes = {
   children: PropTypes.object,
   classes: PropTypes.object,
   name: PropTypes.string,
+  openSideBar: PropTypes.bool,
+  uiActionCreators: PropTypes.shape({
+    showSideBar: PropTypes.func,
+    hideSideBar: PropTypes.func,
+  }),
 };
 
-export default withStyles(styles)(Dashboard);
+const mapStateToProps = (state, props) => {
+  return {
+    openSideBar: state.ui.openSideBar,
+  }
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    uiActionCreators: bindActionCreators(uiActions, dispatch),
+  }
+};
+
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
+
+export default compose(withConnect, withStyles(styles))(Dashboard);
