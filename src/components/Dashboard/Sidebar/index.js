@@ -6,6 +6,7 @@ import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { ADMIN_ROUTES } from './../../../constants/index';
+import { NavLink } from 'react-router-dom';
 
 class Siderbar extends Component {
   constructor(props) {
@@ -29,9 +30,17 @@ class Siderbar extends Component {
         <List component="div">
           {ADMIN_ROUTES.map((item, index) => {
             return (
-              <ListItem key={index} className={classes.menuItem} button>
-                {item.name}
-              </ListItem>
+              <NavLink
+                key={index}
+                to={item.path}
+                exact={item.exact}
+                className={classes.menuLink}
+                activeClassName={classes.menuLinkActive}
+              >
+                <ListItem key={index} className={classes.menuItem} button>
+                  {item.name}
+                </ListItem>
+              </NavLink>
             )
           })}
         </List>
