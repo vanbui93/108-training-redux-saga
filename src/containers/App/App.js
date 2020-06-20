@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from './../../commons/Theme';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import configureStore from './../../redux/configureStore';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import GloballLoading from './../../components/GloballLoading/index';
 import Modal from '../../components/Modal';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import { ADMIN_ROUTES } from './../../constants/index';
 import AdminLayoutRoute from './../../commons/Layout/AdminLayoutRoute/index';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import DefaultLayoutRoute from './../../commons/Layout/DefaultLayoutRoute/index';
+import theme from './../../commons/Theme';
+import GloballLoading from './../../components/GloballLoading/index';
+import { ADMIN_ROUTES, ROUTES } from './../../constants/index';
+import configureStore from './../../redux/configureStore';
 
 const store = configureStore();
 
@@ -33,6 +34,25 @@ class App extends Component {
     })
     return xhtml;
   }
+
+
+  renderDefaultRoute = () => {
+    let xhtml = null;
+    xhtml = ROUTES.map((route, index) => {
+      console.log(ROUTES);
+
+      return (
+        <DefaultLayoutRoute
+          key={index}
+          path={route.path}
+          component={route.component}
+          name={route.name}
+        />
+      )
+    })
+    return xhtml;
+  }
+
   render() {
     return (
       <Provider store={store}>
@@ -44,6 +64,7 @@ class App extends Component {
             <Modal />
             <Switch>
               {this.renderAdminRoute()}
+              {this.renderDefaultRoute()}
             </Switch>
           </ThemeProvider>
         </BrowserRouter>
