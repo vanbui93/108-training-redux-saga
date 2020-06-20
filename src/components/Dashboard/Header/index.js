@@ -10,6 +10,7 @@ import { withStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import styles from './styles';
+import { withRouter } from 'react-router';
 
 const menuId = 'primary-search-account-menu';
 class Header extends Component {
@@ -32,6 +33,14 @@ class Header extends Component {
     });
   };
 
+  handleLogout = () => {
+    console.log(this.props);
+    const { history } = this.props;
+    if (history) {
+      history.push('/login');
+    }
+  };
+
   renderMenu = () => {
     const { anchorEl } = this.state;
     const isMenuOpen = Boolean(anchorEl);
@@ -45,7 +54,7 @@ class Header extends Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
-        <MenuItem onClick={this.handleMenuClose}>Logout</MenuItem>
+        <MenuItem onClick={this.handleLogout}>Logout</MenuItem>
       </Menu>
     );
   };
@@ -102,6 +111,7 @@ Header.propTypes = {
   name: PropTypes.string,
   openSideBar: PropTypes.bool,
   onToggleSidebar: PropTypes.func,
+  history: PropTypes.object,
 };
 
-export default withStyles(styles)(Header);
+export default withStyles(styles)(withRouter(Header));
