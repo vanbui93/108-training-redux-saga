@@ -8,12 +8,13 @@ import { connect } from 'react-redux';
 import { compose, bindActionCreators } from 'redux';
 import * as uiActions from './../../actions/ui';
 
+var joinClasses = require('classnames');
+
 class Dashboard extends Component {
 
   handleToggleSidebar = (value) => {
     const { uiActionCreators } = this.props;
     const { showSidebar, hideSidebar } = uiActionCreators;
-    console.log(uiActionCreators);
     if (value === true) {
       showSidebar();
     } else {
@@ -26,7 +27,6 @@ class Dashboard extends Component {
     //(ở đây lấy props từ App(route) -> AdminLayoutRoute (routeProps)
     //props name lấy từ AdminLayoutRoute(remainProps), sau đó truyền vào cho header
     const { children, classes, name, openSideBar } = this.props;
-    console.log(openSideBar);
 
     return (
       <div className={classes.dashboard}>
@@ -36,8 +36,13 @@ class Dashboard extends Component {
           onToggleSidebar={this.handleToggleSidebar}
         />
         <div className={classes.wrapper}>
-          <Sidebar openSideBar={openSideBar} onToggleSidebar={this.handleToggleSidebar} />
-          <div className={classes.wrapperContent}>{children}</div>
+          <Sidebar
+            openSideBar={openSideBar}
+            onToggleSidebar={this.handleToggleSidebar}
+          />
+          <div className={joinClasses(classes.wrapperContent, { [classes.shiftLeft]: openSideBar === false })}>
+            {children}
+          </div>
         </div>
       </div>
     );

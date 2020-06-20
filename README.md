@@ -23,6 +23,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Sử dụng Redux-saga TakeEvery](#sử-dụng-redux-saga-takeevery)
 - [Sử dụng Redux Form](#sử-dụng-redux-form)
 - [Redux-form: Validation - Ràng buộc dữ liệu](#redux-form-validation---ràng-buộc-dữ-liệu)
+- [Install classnames](#Install-classnames)
+- [Install react-router-dom](#Install-react-router-dom)
 
 ## Install reactjs
 
@@ -560,12 +562,23 @@ function* rootSaga() {
   yield takeLatest(taskTypes.FILTER_TASK, filterTaskSaga);
 }
 ```
-## Install react-router-dom
+### Install react-router-dom
 Xem thêm https://reacttraining.com/react-router/web/guides/quick-start
 ```sh
 npm install --save react-router-dom
 ```
 
+### Install classnames
+Để sử dụng nối nhiều classnames ở element, Là 1 tiện ích của javascript
+```sh
+npm install classnames --save
+```
+Sử dụng
+```js
+var joinClass = require('classnames');
+```
+
+<br><br>
 Runs the app in the development mode.<br />
 Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 
