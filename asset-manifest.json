@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/108-training-redux-saga/static/js/main.a58c0b33.chunk.js",
+    "main.js.map": "/108-training-redux-saga/static/js/main.a58c0b33.chunk.js.map",
+    "runtime-main.js": "/108-training-redux-saga/static/js/runtime-main.239741e4.js",
+    "runtime-main.js.map": "/108-training-redux-saga/static/js/runtime-main.239741e4.js.map",
+    "static/css/2.d34346ea.chunk.css": "/108-training-redux-saga/static/css/2.d34346ea.chunk.css",
+    "static/js/2.aa20f400.chunk.js": "/108-training-redux-saga/static/js/2.aa20f400.chunk.js",
+    "static/js/2.aa20f400.chunk.js.map": "/108-training-redux-saga/static/js/2.aa20f400.chunk.js.map",
+    "index.html": "/108-training-redux-saga/index.html",
+    "precache-manifest.e3a01b0a8e6d734d9976281c52685f92.js": "/108-training-redux-saga/precache-manifest.e3a01b0a8e6d734d9976281c52685f92.js",
+    "service-worker.js": "/108-training-redux-saga/service-worker.js",
+    "static/css/2.d34346ea.chunk.css.map": "/108-training-redux-saga/static/css/2.d34346ea.chunk.css.map",
+    "static/js/2.aa20f400.chunk.js.LICENSE.txt": "/108-training-redux-saga/static/js/2.aa20f400.chunk.js.LICENSE.txt",
+    "static/media/loading.gif": "/108-training-redux-saga/static/media/loading.73abf012.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.239741e4.js",
+    "static/css/2.d34346ea.chunk.css",
+    "static/js/2.aa20f400.chunk.js",
+    "static/js/main.a58c0b33.chunk.js"
+  ]
+}
