@@ -9,8 +9,14 @@
     {
       "title": "phá game",
       "description": "play game lien quan mobile",
-      "status": 0,
+      "status": 1,
       "id": 5
+    },
+    {
+      "title": "test update",
+      "description": "đây là mô tả",
+      "status": 0,
+      "id": 6
     }
   ]
 }

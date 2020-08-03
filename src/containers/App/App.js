@@ -17,6 +17,8 @@ const store = configureStore();
 
 //Container connect tới reducer
 class App extends Component {
+
+
   renderAdminRoute = () => {
     let xhtml = null;
     xhtml = ADMIN_ROUTES.map((route, index) => {
